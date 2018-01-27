@@ -25,15 +25,17 @@ public class EnergyCarrier : MonoBehaviour
 
 	}
 
-	private void OnTriggerEnter2D(Collider other)
+	private void OnTriggerEnter2D(Collider2D other)
 	{
+		print("enter");
 		if(other.gameObject.layer == LayerMask.NameToLayer("Energy"))
 			StartCoroutine("AddEnergy");
 
 	}
 
-	private void OnTriggerExit2D(Collider other)
+	private void OnTriggerExit2D(Collider2D other)
 	{
+		print(" exit");
 		if(other.gameObject.layer == LayerMask.NameToLayer("Energy"))
 			StopCoroutine("AddEnergy");
 	}
@@ -41,12 +43,16 @@ public class EnergyCarrier : MonoBehaviour
 
 	IEnumerator AddEnergy()
 	{
-		Energy += EnergyAddedPerSecond * EnergyUpdateTime;
-		if (Energy >= MaxEnergy)
+		while (true)
 		{
-			Energy = MaxEnergy;
-			yield break;
+			Energy += EnergyAddedPerSecond * EnergyUpdateTime;
+			if (Energy >= MaxEnergy)
+			{
+				Energy = MaxEnergy;
+				yield break;
+			}
+			yield return new WaitForSeconds(EnergyUpdateTime);
 		}
-		yield return new WaitForSeconds(EnergyUpdateTime);
+
 	}
 }

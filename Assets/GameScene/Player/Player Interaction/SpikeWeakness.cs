@@ -6,7 +6,7 @@ public class SpikeWeakness : MonoBehaviour
 {
 	private Animator anim;
 
-	public
+	public TeamBase Team;
 	// Use this for initialization
 	void Start ()
 	{
@@ -19,16 +19,16 @@ public class SpikeWeakness : MonoBehaviour
 	}
 
 
-	private void OnTriggerEnter2D(Collider other)
+	private void OnTriggerEnter2D(Collider2D other)
 	{
 		GetComponent<EnergyCarrier>().Energy = 0;
 		anim.SetBool("Die", true);
 
 	}
 
-	public void DeadCalllBack()
+	public void DeadCallBack()
 	{
-
+		Team.SpawnPlayer(gameObject.GetComponent<TeamMember>());
 	}
 
 }
