@@ -183,7 +183,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8b07925dda1b5444c95936fcf74599f4, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -265,6 +265,8 @@ MonoBehaviour:
   AirMinSpeed: 5
   AirMaxSpeed: 10
   JumpForce: 800
+  playerBurst: {fileID: 114867145488487892}
+  burstBlockTime: 0.1
   FloorLayerStr: Floor
   Contacts:
     useTriggers: 0

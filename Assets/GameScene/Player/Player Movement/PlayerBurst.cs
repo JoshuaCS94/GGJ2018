@@ -5,9 +5,12 @@ public class PlayerBurst : MonoBehaviour
 	public PlayerAnimationManager animations;
 	public PlayerMovement movement;
 	public float force;
+	internal bool lockedBurst = false;
 	
 	public void Burst(KeyCode direction)
 	{
+		if (lockedBurst) return;
+		
 		switch (direction)
 		{
 			case KeyCode.LeftArrow:
@@ -25,6 +28,8 @@ public class PlayerBurst : MonoBehaviour
 			case KeyCode.UpArrow:
 			{
 				movement.rb.AddForce(Vector2.up * force);
+				movement.blockedJump = true;
+				Invoke("UnblockJump", movement.burstBlockTime);
 				break;
 			}
 			case KeyCode.DownArrow:
@@ -35,5 +40,10 @@ public class PlayerBurst : MonoBehaviour
 		}
 
 		animations.Burst(direction);
+	}
+
+	void UnblockJump()
+	{
+		movement.blockedJump = false;
 	}
 }

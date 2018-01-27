@@ -20,30 +20,33 @@ public class PlayerMovement : MonoBehaviour
 	public float AirMinSpeed;
 	public float AirMaxSpeed;
 
-	[Header("Jump")] 
+	[Header("Jump")]
 	public float JumpForce;
-	
-	[Header("Interactions")] 
+	public PlayerBurst playerBurst;
+	public float burstBlockTime;
+
+	[Header("Interactions")]
 	public string FloorLayerStr;
 	public ContactFilter2D Contacts;
 
 	private int floorLayer = -1;
-	
+
 	[HideInInspector] public float x;
 	[HideInInspector] public float y;
-	
+
 	private Collider2D collider;
 	private Collider2D[] colliding = new Collider2D[20];
 	private float initialGravityScale;
 	internal bool grounded;
 	internal bool platformColliding;
+	internal bool blockedJump;
 	internal Rigidbody2D rb;
-	
+
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		initialGravityScale = rb.gravityScale;
-		
+
 		try
 		{
 			var colliders = GetComponents<Collider2D>();
@@ -58,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 				Debug.Break();
 			}
 		}
-		
+
 		floorLayer = LayerMask.NameToLayer(FloorLayerStr);
 		if (floorLayer == -1)
 		{
@@ -70,13 +73,13 @@ public class PlayerMovement : MonoBehaviour
 	private void FixedUpdate()
 	{
 		grounded = false;
-		
+
 		var count = collider.OverlapCollider(Contacts, colliding);
-		
+
 		for (int i =0; i<count; i++)
 		{
 			var colli = colliding[i];
-			
+
 			if (colli.gameObject == gameObject) continue;
 
 			if (colli.gameObject.layer == floorLayer)
@@ -99,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
 		float minSpeed;
 		float maxSpeed;
 		float absx;
-		
+
 		if (grounded)
 		{
 			absx = rb.velocity.magnitude;
@@ -138,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
 					var v = transform.right.normalized * increase;
 					rb.velocity += new Vector2(v.x, v.y);
 				}
-				
+
 				else
 				{
 					var v = transform.right.normalized * decrease * -velsign;
@@ -153,16 +156,16 @@ public class PlayerMovement : MonoBehaviour
 					var v = transform.right.normalized * decrease * -velsign;
 					rb.velocity += new Vector2(v.x, v.y);
 				}
-				
+
 				else if (velsign == xsign)
 				{
 					var v = transform.right.normalized * maxSpeed * xsign;
-					
+
 					if (grounded)
 					{
 						rb.velocity = new Vector2(v.x, v.y);
 					}
-					
+
 					else
 					{
 						rb.velocity = new Vector2(v.x, rb.velocity.y);
@@ -188,8 +191,10 @@ public class PlayerMovement : MonoBehaviour
 
 	void HandleJump()
 	{
-		if (grounded && y > 0)
+		if (grounded && y > 0 && !blockedJump)
 		{
+			playerBurst.lockedBurst = true;
+			Invoke("UnblockBurst", burstBlockTime);
 			rb.AddForce(Vector2.up * JumpForce);
 		}
 	}
@@ -202,5 +207,10 @@ public class PlayerMovement : MonoBehaviour
 	private void OnCollisionExit2D(Collision2D other)
 	{
 		if(other.gameObject.layer == floorLayer) platformColliding = false;
+	}
+
+	void UnblockBurst()
+	{
+		playerBurst.lockedBurst = false;
 	}
 }
