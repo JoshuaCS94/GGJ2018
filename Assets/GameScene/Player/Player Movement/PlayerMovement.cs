@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 	[Header("Interactions")]
 	public string FloorLayerStr;
 	public ContactFilter2D Contacts;
+	public EnergyCarrier Energy;
+	public float MaxEnergySlow;
 
 	private int floorLayer = -1;
 
@@ -41,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 	internal bool platformColliding;
 	internal bool blockedJump;
 	internal Rigidbody2D rb;
+	private float energySlow;
 
 	private void Awake()
 	{
@@ -68,11 +71,15 @@ public class PlayerMovement : MonoBehaviour
 			Debug.LogWarning("Floor layer name needed");
 			Debug.Break();
 		}
+
+		if (Energy == null) Energy = GetComponent<EnergyCarrier>();
 	}
 
 	private void FixedUpdate()
 	{
 		grounded = false;
+
+		energySlow = (Energy.Energy / Energy.MaxEnergy) * MaxEnergySlow;
 
 		var count = collider.OverlapCollider(Contacts, colliding);
 
@@ -109,8 +116,8 @@ public class PlayerMovement : MonoBehaviour
 			rb.gravityScale = 0;
 			increase = x * Time.fixedDeltaTime * Acceleration * 10;
 			decrease = Time.fixedDeltaTime * BrakeAcceleration * 10;
-			minSpeed = MinSpeed;
-			maxSpeed = MaxSpeed;
+			minSpeed = MinSpeed - energySlow;
+			maxSpeed = MaxSpeed - energySlow;
 			var hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, Contacts.layerMask);
 			transform.up = hit.normal;
 		}
@@ -122,8 +129,8 @@ public class PlayerMovement : MonoBehaviour
 			rb.gravityScale = initialGravityScale;
 			increase = x * Time.fixedDeltaTime * AirAcceleration * 10;
 			decrease = Time.fixedDeltaTime * AirBrakeAcceleration * 10;
-			minSpeed = AirMinSpeed;
-			maxSpeed = AirMaxSpeed;
+			minSpeed = AirMinSpeed - energySlow;
+			maxSpeed = AirMaxSpeed - energySlow;
 		}
 
 		if (Mathf.Abs(x) > .01f)
@@ -193,8 +200,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (grounded && y > 0 && !blockedJump)
 		{
-			playerBurst.lockedBurst = true;
-			Invoke("UnblockBurst", burstBlockTime);
+			playerBurst.BlockBurst();
 			rb.AddForce(Vector2.up * JumpForce);
 		}
 	}
@@ -209,8 +215,15 @@ public class PlayerMovement : MonoBehaviour
 		if(other.gameObject.layer == floorLayer) platformColliding = false;
 	}
 
-	void UnblockBurst()
+
+	internal void BlockJump()
 	{
-		playerBurst.lockedBurst = false;
+		blockedJump = true;
+		Invoke("UnblockJump", burstBlockTime);
+	}
+
+	internal void UnblockJump()
+	{
+		blockedJump = false;
 	}
 }
