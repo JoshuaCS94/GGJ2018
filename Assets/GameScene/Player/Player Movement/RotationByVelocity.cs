@@ -7,9 +7,9 @@ public class RotationByVelocity : MonoBehaviour
 	public PlayerMovement movement;
 	public float MaxRotation;
 	public float TweeningTime;
-	
+
 	private Tweener rotationTweener;
-	
+
 	private void Start()
 	{
 		rotationTweener = transform.DORotate(new Vector3(0, 0, 10), 1);
@@ -22,15 +22,17 @@ public class RotationByVelocity : MonoBehaviour
 
 		if (movement.grounded)
 		{
+			if(Mathf.Abs(movement.rb.velocity.x) < movement.MaxSpeed)
 			rotationTweener = transform.DORotate(
 				new Vector3(0, 0, -MaxRotation * movement.rb.velocity.x / movement.MaxSpeed),
 				TweeningTime);
+
 		}
 
 		else
 		{
 			rotationTweener = transform.DORotate(
-				Vector3.zero, 
+				Vector3.zero,
 				TweeningTime);
 		}
 	}
