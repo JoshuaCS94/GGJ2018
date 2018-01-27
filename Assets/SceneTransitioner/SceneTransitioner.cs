@@ -45,27 +45,50 @@ public class SceneTransitioner : MonoBehaviour
 				(color) => TransitionImage.color = color,
 				Color.black,
 				TransitionDuration);
-			_tweener.OnComplete(() => 
+			_tweener.OnComplete(() =>
 			{
 				SceneManager.LoadScene(SceneNumbers[_i++]);
 			});
 		}
-		
+
 		else
 		{
 			SceneManager.sceneLoaded -= Code;
-			
+
 			_tweener = DOTween.To(
 				() => TransitionImage.color,
 				(color) => TransitionImage.color = color,
 				Color.black,
 				TransitionDuration);
-			_tweener.OnComplete(() => 
+			_tweener.OnComplete(() =>
 			{
 				SceneManager.LoadScene(SceneNumbers[_i]);
+				_tweener = DOTween.To(
+					() => TransitionImage.color,
+					(color) => TransitionImage.color = color,
+					Color.clear,
+					TransitionDuration);
 			});
 		}
-		
+
+	}
+
+	public void FadeBlack()
+	{
+		_tweener = DOTween.To(
+			() => TransitionImage.color,
+			(color) => TransitionImage.color = color,
+			Color.black,
+			TransitionDuration);
+	}
+
+	public void FadeClear()
+	{
+		_tweener = DOTween.To(
+			() => TransitionImage.color,
+			(color) => TransitionImage.color = color,
+			Color.clear,
+			TransitionDuration);
 	}
 
 }
