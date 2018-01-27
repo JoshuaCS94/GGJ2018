@@ -1,0 +1,55 @@
+Logo y Pantallas de carga.
+
+Pantalla de seleccion del player y lobby para conexion (direct IP)
+
+Pantalla de juego: 
+	El jugador al conectarse es unido a un equipo aleatorio
+	En el servidor se ve la partida. En los clientes a lo sumo se ven controles. El juego es server only
+
+Inicio del juego:
+	Los players salen en su respectiva base. Se spawnean uno al lado del otro
+	Se ponen los nombres de los players arriba
+
+Mecanica:
+	Movimiento:
+		Los players tambien se consideran como suelo
+		No hay rampas
+		Los colliders son cuadrados
+		Los players pueden saltar con players arriba
+		Mientras mas energia tenga el player mas masa tendra
+		Los players tienen una probabilidad de reventarse y morir al ser empujados directamente proporcional a la energia y a la velocidad del choque
+
+	Hay un solo spawn de energia ( energia infinita )
+	Mientras tengas capacidad y estes cerca del spawn de energia vas cargandote
+	En el mapa hay trampas
+	Dado un tiempo T gana el equipo que mas energia ha capturado
+
+Al terminarse un juego, se dice que equipo gano y se regresa a la pantalla de seleccion del player
+
+Scripts:
+	Movimiento -> Manuel
+	Interacciones entre players -> Manuel
+	Seleccion del player y entrada al juego -> Manuel
+	Input networked -> Josue
+	Logicas de colisiones entre objetos y players -> UDL
+	UI -> Joshua	
+	Calcular las energias de cada equipo y dar el resultado final -> UDL
+	Diseno -> Roldan
+
+
+Sonido:
+	Pantalla de carga
+	Pantalla de juego
+	Efectos:
+		Choques d players
+		Boost
+		Cargando energia
+
+
+2da Fase:
+	Controles de movil
+	Vista del player en moviles. 
+	BroadCast
+	Pantalla de seleccion del player junto con seleccion de equipo
+	Annadir power-ups
+	La energia se queda en el suelo al morir un player
