@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MainNetworkManager : NetworkManager
 {
-    
+
     public void _StartServer()
     {
         singleton.StartServer();
@@ -56,5 +56,5 @@ public class MainNetworkManager : NetworkManager
     public void ChangePort(string port)
     {
         singleton.networkPort = int.Parse(GameObject.Find(port).GetComponent<InputField>().text);
-    }   
+    }
 }
