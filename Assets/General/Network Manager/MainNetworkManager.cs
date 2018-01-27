@@ -1,11 +1,23 @@
 ﻿using System.Linq;
 using UnityEngine.Networking;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainNetworkManager : NetworkManager
 {
-    
+    public override void OnServerSceneChanged(string sceneName)
+    {
+        SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
+    }
+
+    public override void OnClientSceneChanged(NetworkConnection conn)
+    {
+        SceneManager.LoadScene("Client", LoadSceneMode.Additive);
+
+        base.OnClientSceneChanged(conn);
+    }
+
     public void _StartServer()
     {
         singleton.StartServer();
@@ -56,5 +68,5 @@ public class MainNetworkManager : NetworkManager
     public void ChangePort(string port)
     {
         singleton.networkPort = int.Parse(GameObject.Find(port).GetComponent<InputField>().text);
-    }   
+    }
 }

@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4743281642975270}
+  - component: {fileID: 114037105038782090}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -242,9 +243,41 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114037105038782090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1078155670971312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 33
+    i1: 162
+    i2: 23
+    i3: 226
+    i4: 240
+    i5: 238
+    i6: 4
+    i7: 212
+    i8: 8
+    i9: 9
+    i10: 5
+    i11: 19
+    i12: 85
+    i13: 243
+    i14: 235
+    i15: 109
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114391324110902694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,8 +287,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a5fc81ec0402d14ca039bc978299036, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   Acceleration: 2
   BrakeAcceleration: 3
   MinSpeed: 2
@@ -293,8 +326,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4aeccb259ce614fac6a93460433866, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   PlayerLayerStr: Player
   ForceMultiplier: 25
   movement: {fileID: 114391324110902694}
@@ -307,8 +340,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74beba8296502c1419894f5fec9edff0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!114 &114752706215909892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,8 +351,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcbce5a4577c5ab4f8ea2c4ff91ad5f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   ease: 30
   movement: {fileID: 114391324110902694}
   MaxRotation: 30
@@ -333,8 +366,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 229b3fe9978878244a2ad3542b6d886c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   BurstAnimationObject: {fileID: 1979243703131058}
   animations: {fileID: 114639702125434898}
   StartTriggerStr: Start
@@ -351,8 +384,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbaba7cbdcf18d4293cb0f145366214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   animations: {fileID: 114639702125434898}
   movement: {fileID: 114391324110902694}
   force: 1000
