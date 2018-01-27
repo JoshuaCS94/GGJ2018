@@ -166,7 +166,7 @@ Prefab:
     - target: {fileID: 114461439521090022, guid: 4e6878b172ba82b4d872c4fdb7aa379b,
         type: 2}
       propertyPath: m_OnlineScene
-      value: Level 0
+      value: Lobby_Online
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e6878b172ba82b4d872c4fdb7aa379b, type: 2}
