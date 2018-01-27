@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 internal enum GameMsgType
 {
-	Movement, Burst
+	Movement = 1000, Burst
 }
 
 internal class MovementMessage : MessageBase
@@ -33,7 +33,7 @@ public class GameManager_Server : MonoBehaviour {
 	{
 		var movMsg = netMsg.ReadMessage<MovementMessage>();
 
-		var player = netMsg.conn.playerControllers[0].gameObject.GetComponent<PlayerMovement>();
+		var player = netMsg.conn.playerControllers[0].gameObject.GetComponentInChildren<PlayerMovement>();
 
 		player.x = movMsg.delta.x;
 		player.y = movMsg.delta.y;
@@ -43,7 +43,7 @@ public class GameManager_Server : MonoBehaviour {
 	{
 		var burstMsg = netMsg.ReadMessage<BurstMessage>();
 
-		var player = netMsg.conn.playerControllers[0].gameObject.GetComponent<PlayerBurst>();
+		var player = netMsg.conn.playerControllers[0].gameObject.GetComponentInChildren<PlayerBurst>();
 
 		player.Burst(burstMsg.keyCode);
 	}
