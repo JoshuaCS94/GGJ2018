@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 internal enum GameMsgType
 {
-	Movement = 1000, Burst
+	Movement = 1000, FinishedMovement, Burst
 }
 
 internal class MovementMessage : MessageBase
@@ -26,7 +26,16 @@ public class GameManager_Server : MonoBehaviour {
 	private void Start()
 	{
 		NetworkServer.RegisterHandler((short)GameMsgType.Movement, MovementHandler);
+		NetworkServer.RegisterHandler((short)GameMsgType.FinishedMovement, FinishedMovementHandler);
 		NetworkServer.RegisterHandler((short)GameMsgType.Burst, BurstHandler);
+	}
+
+	private void FinishedMovementHandler(NetworkMessage netMsg)
+	{
+		var player = netMsg.conn.playerControllers[0].gameObject.GetComponentInChildren<PlayerMovement>();
+
+		player.x = 0;
+		player.y = 0;
 	}
 
 	private void MovementHandler(NetworkMessage netMsg)

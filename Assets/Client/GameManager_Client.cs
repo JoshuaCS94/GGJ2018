@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Networking.NetworkSystem;
 
 public class GameManager_Client : MonoBehaviour {
 
@@ -21,6 +22,8 @@ public class GameManager_Client : MonoBehaviour {
 
 		if (!Mathf.Approximately(mx, 0) || !Mathf.Approximately(my, 0))
 			SendMovement(mx, my);
+		else
+			SendFinishedMovement();
 
 		if (Input.GetKeyDown(KeyCode.UpArrow))
 			SendBurst(KeyCode.UpArrow);
@@ -36,6 +39,12 @@ public class GameManager_Client : MonoBehaviour {
 	{
 		m_networkManager.client.Send((short) GameMsgType.Movement,
 			new MovementMessage {delta = new Vector2(x, y)});
+	}
+
+	private void SendFinishedMovement()
+	{
+		m_networkManager.client.Send((short) GameMsgType.FinishedMovement,
+			new EmptyMessage());
 	}
 
 	private void SendBurst(KeyCode keyCode)
