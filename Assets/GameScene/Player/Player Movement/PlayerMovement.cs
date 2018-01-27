@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
 	private Collider2D[] colliding = new Collider2D[20];
 	private float initialGravityScale;
 	internal bool grounded;
-	internal bool platformColliding;
 	internal bool blockedJump;
 	internal Rigidbody2D rb;
 	private float energySlow;
@@ -124,7 +123,6 @@ public class PlayerMovement : MonoBehaviour
 
 		else
 		{
-			if (platformColliding) return;
 			absx = Mathf.Abs(rb.velocity.x);
 			rb.gravityScale = initialGravityScale;
 			increase = x * Time.fixedDeltaTime * AirAcceleration * 10;
@@ -204,17 +202,6 @@ public class PlayerMovement : MonoBehaviour
 			rb.AddForce(Vector2.up * JumpForce);
 		}
 	}
-
-	private void OnCollisionEnter2D(Collision2D other)
-	{
-		if(other.gameObject.layer == floorLayer) platformColliding = true;
-	}
-
-	private void OnCollisionExit2D(Collision2D other)
-	{
-		if(other.gameObject.layer == floorLayer) platformColliding = false;
-	}
-
 
 	internal void BlockJump()
 	{
