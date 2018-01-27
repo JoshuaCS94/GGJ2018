@@ -15,16 +15,16 @@ public class PlayerCollisions : MonoBehaviour
 		PlayerLayer = LayerMask.NameToLayer(PlayerLayerStr);
 	}
 
-	public virtual void OnTriggerEnter2D(Collider2D other)
-	{
-		if (other.gameObject.layer == PlayerLayer)
-		{
-			if (other.gameObject != gameObject && !other.isTrigger)
-			{
-				Destroy(other.transform.parent.gameObject);
-			}
-		}
-	}
+//	public virtual void OnTriggerEnter2D(Collider2D other)
+//	{
+//		if (other.gameObject.layer == PlayerLayer)
+//		{
+//			if (other.gameObject != gameObject && !other.isTrigger)
+//			{
+//				Destroy(other.transform.parent.gameObject);
+//			}
+//		}
+//	}
 
 	private void OnCollisionEnter2D(Collision2D other)
 	{

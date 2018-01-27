@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4743281642975270}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4237887582042808}
   - component: {fileID: 212259576918117600}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,14 +50,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4164607141437844}
-  - component: {fileID: 58469526800399360}
   - component: {fileID: 58891597797373010}
   - component: {fileID: 50920225181089002}
   - component: {fileID: 114391324110902694}
   - component: {fileID: 114867145488487892}
-  - component: {fileID: 114526561479994930}
   - component: {fileID: 114504873993768440}
-  m_Layer: 10
+  - component: {fileID: 61265419371174320}
+  m_Layer: 8
   m_Name: Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +74,7 @@ GameObject:
   - component: {fileID: 95975914879765726}
   - component: {fileID: 212580681960649096}
   - component: {fileID: 114785266632224510}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BoostAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +92,7 @@ GameObject:
   - component: {fileID: 212152618360767446}
   - component: {fileID: 114752706215909892}
   - component: {fileID: 114639702125434898}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,26 +183,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: aff1cdb540394194691934fe0dd1defe, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &58469526800399360
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1543393406401920}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.38
 --- !u!58 &58891597797373010
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -219,6 +203,31 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.24}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!61 &61265419371174320
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1543393406401920}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.64, y: 0.71}
+  m_EdgeRadius: 0
 --- !u!95 &95975914879765726
 Animator:
   serializedVersion: 3
@@ -255,7 +264,7 @@ MonoBehaviour:
   AirBrakeAcceleration: 3
   AirMinSpeed: 5
   AirMaxSpeed: 10
-  JumpForce: 1000
+  JumpForce: 800
   FloorLayerStr: Floor
   Contacts:
     useTriggers: 0
@@ -266,7 +275,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 256
+      m_Bits: 512
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
@@ -287,25 +296,6 @@ MonoBehaviour:
   PlayerLayerStr: Player
   ForceMultiplier: 25
   movement: {fileID: 114391324110902694}
---- !u!114 &114526561479994930
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1543393406401920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c65211345bfc32c4e8a53c2c30159239, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  up: 119
-  down: 115
-  left: 97
-  right: 100
-  burst_count_down: 999999
-  TimeDelay: 999999
-  m: {fileID: 114391324110902694}
-  b: {fileID: 114867145488487892}
 --- !u!114 &114639702125434898
 MonoBehaviour:
   m_ObjectHideFlags: 1

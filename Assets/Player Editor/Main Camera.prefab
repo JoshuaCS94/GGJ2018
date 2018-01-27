@@ -20,10 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4215520544937086}
   - component: {fileID: 20602005963652966}
-  - component: {fileID: 92159124177711496}
   - component: {fileID: 124199221690268368}
   - component: {fileID: 81169042553567046}
-  - component: {fileID: 114433828489491564}
   - component: {fileID: 50891870090265258}
   m_Layer: 0
   m_Name: Main Camera
@@ -108,32 +106,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1826834156168910}
   m_Enabled: 1
---- !u!92 &92159124177711496
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1826834156168910}
-  m_Enabled: 1
---- !u!114 &114433828489491564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1826834156168910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d190085b35ba7542a6eaffd34eaf07a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointerText: {fileID: 0}
-  wingsText: {fileID: 0}
-  coreText: {fileID: 0}
-  pointers: []
-  wings: []
-  cores: []
-  partsOffset: {x: 0, y: -0.15, z: 0}
-  velocity: 2.5
 --- !u!124 &124199221690268368
 Behaviour:
   m_ObjectHideFlags: 1
