@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeWeakness : MonoBehaviour {
+public class SpikeWeakness : MonoBehaviour
+{
+	private Animator anim;
 
+	public
 	// Use this for initialization
-	void Start () {
-
+	void Start ()
+	{
+		anim = GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -15,16 +19,16 @@ public class SpikeWeakness : MonoBehaviour {
 	}
 
 
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter2D(Collider other)
 	{
-		if(other.gameObject.layer == LayerMask.NameToLayer("Energy"))
-			StartCoroutine("AddEnergy");
+		GetComponent<EnergyCarrier>().Energy = 0;
+		anim.SetBool("Die", true);
 
 	}
 
-	private void OnTriggerExit(Collider other)
+	public void DeadCalllBack()
 	{
-		if(other.gameObject.layer == LayerMask.NameToLayer("Energy"))
-			StopCoroutine("AddEnergy");
+
 	}
+
 }

@@ -25,14 +25,14 @@ public class EnergyCarrier : MonoBehaviour
 
 	}
 
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter2D(Collider other)
 	{
 		if(other.gameObject.layer == LayerMask.NameToLayer("Energy"))
 			StartCoroutine("AddEnergy");
 
 	}
 
-	private void OnTriggerExit(Collider other)
+	private void OnTriggerExit2D(Collider other)
 	{
 		if(other.gameObject.layer == LayerMask.NameToLayer("Energy"))
 			StopCoroutine("AddEnergy");
