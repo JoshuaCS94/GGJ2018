@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Lobby/Lobby.unity
     guid: 829c11c66f22bdf49ae038e2d7cf69c7
+  - enabled: 1
+    path: Assets/Levels/Level 0.unity
+    guid: af688bbc02cc62742b4448521794ef90
