@@ -8,14 +8,14 @@ public class GarageManager : MonoBehaviour
     [Header("References")]
     public Text robotText;
     public Text coreText;
-    
+
     public List<GameObject> robots;
-    public List<GameObject> cores;    
+    public List<GameObject> cores;
 
-    GameObject loadedRobot;
-    GameObject loadedCore;
+    private GameObject m_loadedRobot;
+    private GameObject m_loadedCore;
 
-    [Header("Color")] 
+    [Header("Color")]
     private float red = 1;
     private float green = 1;
     private float blue = 1;
@@ -23,11 +23,13 @@ public class GarageManager : MonoBehaviour
     public Slider redSlider;
     public Slider greenSlider;
     public Slider blueSlider;
-    
-    int currentRobot = 0;
-    int currentCore = 0;
 
-    void Awake()
+    private int m_currentRobot = 0;
+    private int m_currentCore = 0;
+
+    public Transform playerPreviewPosition;
+
+    private void Awake()
     {
         foreach(var item in Resources.LoadAll("Robots/")) robots.Add(item as GameObject);
         foreach(var item in Resources.LoadAll("Cores/")) cores.Add(item as GameObject);
@@ -36,28 +38,28 @@ public class GarageManager : MonoBehaviour
         UpdateColor();
     }
 
-    void UpdateRobot()
+    private void UpdateRobot()
     {
-        if(loadedRobot != null) Destroy(loadedRobot);
-        loadedRobot = Instantiate(robots[currentRobot], transform);
-        
-        loadedRobot.transform.localPosition = new Vector3(0,0, -transform.position.z+1);
-        robotText.text = robots[currentRobot].name;
+        if(m_loadedRobot != null) Destroy(m_loadedRobot);
+        m_loadedRobot = Instantiate(robots[m_currentRobot], playerPreviewPosition);
+
+        m_loadedRobot.transform.localPosition = new Vector3(0,0, -transform.position.z+1);
+        robotText.text = robots[m_currentRobot].name;
     }
 
-    void UpdateCore()
+    private void UpdateCore()
     {
-        if(loadedCore != null) Destroy(loadedCore);
-        loadedCore = Instantiate(cores[currentCore], transform);
-        loadedCore.transform.localPosition = new Vector3(0, 0, -transform.position.z);
-        coreText.text = cores[currentCore].name;
+        if(m_loadedCore != null) Destroy(m_loadedCore);
+        m_loadedCore = Instantiate(cores[m_currentCore], playerPreviewPosition);
+        m_loadedCore.transform.localPosition = new Vector3(0, 0, -transform.position.z);
+        coreText.text = cores[m_currentCore].name;
     }
 
     private void UpdateColor()
     {
-        loadedCore.GetComponent<SpriteRenderer>().color = new Color(red, green, blue);
+        m_loadedCore.GetComponent<SpriteRenderer>().color = new Color(red, green, blue);
     }
-    
+
     public void ChangeRed()
     {
         red = redSlider.value;
@@ -75,38 +77,36 @@ public class GarageManager : MonoBehaviour
         blue = blueSlider.value;
         UpdateColor();
     }
-    
+
     public void NextRobot()
     {
-        if(++currentRobot >= robots.Count) currentRobot = 0;
+        if(++m_currentRobot >= robots.Count) m_currentRobot = 0;
         UpdateRobot();
     }
 
     public void NextCore()
     {
-        if(++currentCore >= cores.Count) currentCore = 0;
+        if(++m_currentCore >= cores.Count) m_currentCore = 0;
         UpdateCore();
         UpdateColor();
     }
 
-
     public void PreviousRobot()
     {
-        if(--currentRobot < 0) currentRobot = robots.Count-1;
+        if(--m_currentRobot < 0) m_currentRobot = robots.Count-1;
         UpdateRobot();
     }
 
     public void PreviousCore()
     {
-        if(--currentCore < 0) currentCore = cores.Count-1;
+        if(--m_currentCore < 0) m_currentCore = cores.Count-1;
         UpdateCore();
         UpdateColor();
     }
 
-    
     public void FinishSelection()
     {
-        GameObject.Find("PartContainer").GetComponent<PartContainer>().parts = new string[] { robots[currentRobot].name, cores[currentCore].name };
+        GameObject.Find("PartContainer").GetComponent<PartContainer>().parts = new string[] { robots[m_currentRobot].name, cores[m_currentCore].name };
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
