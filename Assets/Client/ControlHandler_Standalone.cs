@@ -2,9 +2,8 @@
 
 public class ControlHandler_Standalone : MonoBehaviour, IControlHandler
 {
-    public Vector2 Movement { get; private set; }
-
-    public KeyCode? Burst { get; private set; }
+    public Vector2 Movement { get; set; }
+    public KeyCode? Burst { get; set; }
 
     private void Update()
     {
