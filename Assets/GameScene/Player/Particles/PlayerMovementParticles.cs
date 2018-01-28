@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovementParticles : MonoBehaviour
 {
+	public PlayerData data;
 	public PlayerMovement movement;
 	private ParticleSystem particles;
 
@@ -11,7 +12,7 @@ public class PlayerMovementParticles : MonoBehaviour
 	{
 		particles = GetComponent<ParticleSystem>();
 		var color = particles.main;
-		color.startColor = Color.red;
+		color.startColor = data.playerColor;
 	}
 
 	void Update ()

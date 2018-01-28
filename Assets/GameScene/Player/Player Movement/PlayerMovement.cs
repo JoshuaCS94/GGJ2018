@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
 	public delegate void MyEvent();
 	public event MyEvent JumpEvents;
 	private int floorLayer = -1;
+	public SpriteRenderer Renderer;
+	public PlayerData data;
 
 	[HideInInspector] public float x;
 	[HideInInspector] public float y;
@@ -74,6 +76,11 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		if (Energy == null) Energy = GetComponent<EnergyCarrier>();
+	}
+
+	void Start()
+	{
+		Renderer.color = data.playerColor;
 	}
 
 	private void FixedUpdate()

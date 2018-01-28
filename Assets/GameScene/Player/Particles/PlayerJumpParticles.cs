@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpParticles : MonoBehaviour
 {
+	public PlayerData data;
 	public PlayerMovement movement;
 	private ParticleSystem particles;
 	public float StopTime;
@@ -17,7 +18,8 @@ public class PlayerJumpParticles : MonoBehaviour
 		particles = GetComponent<ParticleSystem>();
 		particles.Stop();
 		var color = particles.main;
-		color.startColor = Color.red;
+		color.startColor = data.playerColor;
+
 	}
 
 	void PlayParticles()

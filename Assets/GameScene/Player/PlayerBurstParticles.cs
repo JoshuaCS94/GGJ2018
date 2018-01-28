@@ -2,6 +2,7 @@
 
 public class PlayerBurstParticles : MonoBehaviour
 {
+	public PlayerData data;
 	public PlayerMovement movement;
 	public PlayerBurst burst;
 	private ParticleSystem particles;
@@ -20,7 +21,7 @@ public class PlayerBurstParticles : MonoBehaviour
 		particles = GetComponent<ParticleSystem>();
 		particles.Stop();
 		var color = particles.main;
-		color.startColor = Color.red;
+		color.startColor = data.playerColor;
 	}
 
 	void PlayParticles(KeyCode direction)
