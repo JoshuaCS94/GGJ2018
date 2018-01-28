@@ -18,7 +18,7 @@ public class TeamBase : MonoBehaviour
 
 	private int TeamMembersCount = 0;
 	private BoxCollider2D bc2d;
-	private List<TeamMember> players;
+	public List<TeamMember> players;
 
 
 	public GameObject[] TestPlayers;
@@ -163,6 +163,15 @@ public class TeamBase : MonoBehaviour
 		Energy += carrier.Energy;
 		carrier.Energy = 0;
 		//TODO: UI
+	}
+
+	public void DisablePlayers()
+	{
+		foreach (var player in players)
+		{
+			player.GetComponent<PlayerMovement>().enabled = false;
+			player.GetComponent<Rigidbody2D>().isKinematic = false;
+		}
 	}
 }
 
