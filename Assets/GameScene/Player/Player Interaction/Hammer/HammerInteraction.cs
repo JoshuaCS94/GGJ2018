@@ -10,6 +10,10 @@ public class HammerInteraction : MonoBehaviour
 
 	private Collider2D Left;
 
+	public PortalAnimationController p_animation;
+
+	public HammerController ham_con;
+
 	// Use this for initialization
 	void Awake ()
 	{
@@ -18,6 +22,10 @@ public class HammerInteraction : MonoBehaviour
 		Right = colliders[1];
 	}
 
+	void Start()
+	{
+		Off();
+	}
 	// Update is called once per frame
 	void Update () {
 
@@ -48,5 +56,16 @@ public class HammerInteraction : MonoBehaviour
 
 			rb.AddForce(direction*-300 + Vector3.right*1000);
 		}
+	}
+
+
+	public void On()
+	{
+		p_animation.StartAnimation();
+	}
+
+	public void Off()
+	{
+		p_animation.StopAnimation();
 	}
 }
