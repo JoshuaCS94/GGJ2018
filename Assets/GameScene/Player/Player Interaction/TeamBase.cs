@@ -5,25 +5,30 @@ using UnityEngine;
 
 public class TeamBase : MonoBehaviour
 {
-	public float TeamEnergy = 0;
-
 	//TODO: luz en el sprite del color del player
 	private float TeamID;
+
+	public float Energy = 0;
 
 	public GameObject[] TeamSpawnPoints;
 	public LayerMask layer;
 
+	public float TimeToRespawn = 2;
 	public float ReSpawnUpdateTime = 0.2f;
 
 	private int TeamMembersCount = 0;
-	public BoxCollider2D bc2d;
+	private BoxCollider2D bc2d;
+	private List<TeamMember> players;
 
 
 	public GameObject TestPlayer;
 
+	public GameObject[] TestPlayers;
 
 	// Use this for initialization
 	void Start () {
+		players = new List<TeamMember>();
+		AddPlayers(TestPlayers);
 
 	}
 
@@ -31,7 +36,14 @@ public class TeamBase : MonoBehaviour
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			AddPlayer(TestPlayer);
+			foreach (var player in players)
+			{
+				Sequence s = DOTween.Sequence()
+					.AppendCallback(() => player.portal.StartAnimation())
+					.AppendInterval(TimeToRespawn)
+					.AppendCallback(() => SpawnPlayer(player))
+					.OnComplete(() => player.portal.StopAnimation());
+			}
 		}
 	}
 
@@ -43,32 +55,40 @@ public class TeamBase : MonoBehaviour
 		}
 
 		bc2d = player.GetComponentInChildren<BoxCollider2D>();
+		var c = player.transform.Find("Graphics").Find("GameObject").GetComponent<SpriteRenderer>().color;
+		var portal = TeamSpawnPoints[TeamMembersCount].GetComponent<PortalAnimationController>();
+		portal.ChangeColor(c);
 		var p = player.transform.Find("Movement").gameObject.AddComponent<TeamMember>();
-		p.identifier = TeamMembersCount;
 
-		SpawnPlayer(p);
+		p.identifier = TeamMembersCount;
+		p.portal = portal;
+		players.Add(p);
 
 		TeamMembersCount++;
 	}
 
-
+	public void AddPlayers(GameObject[] players)
+	{
+		foreach (var player in players)
+		{
+			AddPlayer(player);
+		}
+	}
 
 	public void SpawnPlayer(TeamMember player)
 	{
 
+		SetPlayerPos(player);
 		var size = bc2d.bounds.extents;
-		var s_point = TeamSpawnPoints[player.identifier];
 
-		player.gameObject.transform.SetZ(1);
-		player.gameObject.transform.SetX(s_point.transform.position.x);
-		player.gameObject.transform.SetY(s_point.transform.position.y - size.y);
+		var s_point = TeamSpawnPoints[player.identifier];
 
 		var pos = new Vector3(s_point.transform.position.x, s_point.transform.position.y + size.y);
 		var collision = Physics2D.OverlapBox(pos, size, layer);
 
 		if (collision != null && collision.gameObject != player.gameObject )
 		{
-			print(collision.gameObject);
+//			print(collision.gameObject);
 			StartCoroutine("WaitForSpawn", player);
 			return;
 		}
@@ -76,11 +96,40 @@ public class TeamBase : MonoBehaviour
 		InvokePlayer(player);
 	}
 
+	public void SpawnAllPLayers()
+	{
+		foreach (var p in players)
+		{
+			SpawnPlayer(p);
+		}
+	}
+
+	void SetPlayerPos(TeamMember player)
+	{
+		var size = bc2d.bounds.extents;
+		var s_point = TeamSpawnPoints[player.identifier];
+
+		player.gameObject.transform.SetZ(1);
+		player.gameObject.transform.SetX(s_point.transform.position.x);
+		player.gameObject.transform.SetY(s_point.transform.position.y - size.y);
+	}
+
+	public void KillPlayer(TeamMember player)
+	{
+		SetPlayerPos(player);
+
+		Sequence s = DOTween.Sequence()
+			.AppendCallback(() => player.portal.StartAnimation())
+			.AppendInterval(TimeToRespawn)
+			.AppendCallback(() => SpawnPlayer(player))
+			.OnComplete(() => player.portal.StopAnimation());
+	}
+
 	IEnumerator WaitForSpawn(TeamMember player)
 	{
 
 		var size = bc2d.bounds.extents;
-		print("size =" + size.y);
+//		print("size =" + size.y);
 
 		var s_point = TeamSpawnPoints[player.identifier];
 
@@ -104,10 +153,18 @@ public class TeamBase : MonoBehaviour
 
 		player.transform.DOMoveY(s_point.transform.position.y + 4 * size.y, 0.2f).OnComplete(() =>
 		{
-			print("meh");
+//			print("meh");
 			pm.enabled = true;
 			rb.isKinematic = false;
 		});
+	}
+
+	public void DischargeEnergy(EnergyCarrier carrier)
+	{
+		TeamMember player = carrier.GetComponent<TeamMember>();
+		Energy += carrier.Energy;
+		carrier.Energy = 0;
+		//TODO: UI
 	}
 }
 

@@ -6,4 +6,6 @@ public class TeamMember : MonoBehaviour
 {
 
 	public int identifier;
+	public PortalAnimationController portal;
+
 }

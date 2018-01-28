@@ -27,15 +27,19 @@ public class EnergyCarrier : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		print("enter");
+//		print("enter");
 		if(other.gameObject.layer == LayerMask.NameToLayer("Energy"))
 			StartCoroutine("AddEnergy");
+		if (other.gameObject.layer == LayerMask.NameToLayer("Base"))
+		{
+			other.gameObject.GetComponentInParent<TeamBase>().DischargeEnergy(this);
+		}
 
 	}
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
-		print(" exit");
+//		print(" exit");
 		if(other.gameObject.layer == LayerMask.NameToLayer("Energy"))
 			StopCoroutine("AddEnergy");
 	}
