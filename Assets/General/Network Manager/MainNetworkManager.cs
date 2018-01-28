@@ -16,10 +16,12 @@ public class MainNetworkManager : NetworkManager
 {
     public GarageManager garage;
 
+    private int m_currentTeam = 0;
+
     public override void OnServerSceneChanged(string sceneName)
     {
         SceneManager.LoadScene("Level 0", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Game", LoadSceneMode.Additive);
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)
@@ -84,6 +86,22 @@ public class MainNetworkManager : NetworkManager
             playerData.playerColor = playerMsg.color;
 
             NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+
+            // Add players
+            var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            print(gameManager);
+
+            var team1 = gameManager.team1;
+            var team2 = gameManager.team2;
+
+            if (m_currentTeam % 2 == 0)
+            {
+                team1.AddPlayer(player);
+            }
+            else
+            {
+                team2.AddPlayer(player);
+            }
         }
     }
 

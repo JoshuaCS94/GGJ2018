@@ -18,17 +18,9 @@ public class TeamBase : MonoBehaviour
 
 	private int TeamMembersCount = 0;
 	private BoxCollider2D bc2d;
-	public List<TeamMember> players;
-
+	public List<TeamMember> players = new List<TeamMember>();
 
 	public GameObject[] TestPlayers;
-
-	// Use this for initialization
-	void Start () {
-		players = new List<TeamMember>();
-		AddPlayers(TestPlayers);
-
-	}
 
 	// Update is called once per frame
 	void Update () {
@@ -63,6 +55,8 @@ public class TeamBase : MonoBehaviour
 		players.Add(p);
 
 		TeamMembersCount++;
+
+		SpawnPlayer(p);
 	}
 
 	public void AddPlayers(GameObject[] players)
