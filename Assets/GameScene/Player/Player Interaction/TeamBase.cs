@@ -18,17 +18,9 @@ public class TeamBase : MonoBehaviour
 
 	private int TeamMembersCount = 0;
 	private BoxCollider2D bc2d;
-	public List<TeamMember> players;
-
+	public List<TeamMember> players = new List<TeamMember>();
 
 	public GameObject[] TestPlayers;
-
-	// Use this for initialization
-	void Start () {
-		players = new List<TeamMember>();
-		AddPlayers(TestPlayers);
-
-	}
 
 	// Update is called once per frame
 	void Update () {
@@ -53,7 +45,7 @@ public class TeamBase : MonoBehaviour
 		}
 
 		bc2d = player.GetComponentInChildren<BoxCollider2D>();
-		var c = player.transform.Find("Graphics").Find("GameObject").GetComponent<SpriteRenderer>().color;
+		var c = player.GetComponent<PlayerData>().playerColor;
 		var portal = TeamSpawnPoints[TeamMembersCount].GetComponent<PortalAnimationController>();
 		portal.ChangeColor(c);
 		var p = player.transform.Find("Movement").gameObject.AddComponent<TeamMember>();
@@ -63,6 +55,8 @@ public class TeamBase : MonoBehaviour
 		players.Add(p);
 
 		TeamMembersCount++;
+
+		SpawnPlayer(p);
 	}
 
 	public void AddPlayers(GameObject[] players)
