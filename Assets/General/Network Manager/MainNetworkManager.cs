@@ -8,6 +8,7 @@ public class MainNetworkManager : NetworkManager
 {
     public override void OnServerSceneChanged(string sceneName)
     {
+        SceneManager.LoadScene("Level 0", LoadSceneMode.Additive);
         SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
     }
 
