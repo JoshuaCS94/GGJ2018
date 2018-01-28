@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
 	public EnergyCarrier Energy;
 	public float MaxEnergySlow;
 
+	public delegate void JumpEvent();
+	public event JumpEvent JumpEvents;
 	private int floorLayer = -1;
 
 	[HideInInspector] public float x;
@@ -198,6 +200,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (grounded && y > 0 && !blockedJump)
 		{
+			if (JumpEvents != null) JumpEvents();
 			playerBurst.BlockBurst();
 			rb.AddForce(Vector2.up * JumpForce);
 		}
