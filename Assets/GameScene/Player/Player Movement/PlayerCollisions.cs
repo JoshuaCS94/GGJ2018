@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
 {
@@ -9,6 +7,8 @@ public class PlayerCollisions : MonoBehaviour
 	public PlayerMovement Movement;
 	public EnergyCarrier Energy;
 	public float MaxProbabilityToDie;
+
+	public event PlayerMovement.MyEvent CollisionEvent;
 
 	private int PlayerLayer;
 
@@ -29,5 +29,7 @@ public class PlayerCollisions : MonoBehaviour
 		{
 
 		}
+
+		if (CollisionEvent != null) CollisionEvent();
 	}
 }

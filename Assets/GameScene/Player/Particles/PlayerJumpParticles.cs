@@ -8,7 +8,7 @@ public class PlayerJumpParticles : MonoBehaviour
 	private ParticleSystem particles;
 	public float StopTime;
 
-	private PlayerMovement.JumpEvent action;
+	private PlayerMovement.MyEvent action;
 
 	void Start ()
 	{

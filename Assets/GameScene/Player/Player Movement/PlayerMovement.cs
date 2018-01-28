@@ -31,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
 	public EnergyCarrier Energy;
 	public float MaxEnergySlow;
 
-	public delegate void JumpEvent();
-	public event JumpEvent JumpEvents;
+	public delegate void MyEvent();
+	public event MyEvent JumpEvents;
 	private int floorLayer = -1;
 
 	[HideInInspector] public float x;
