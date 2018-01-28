@@ -16,9 +16,13 @@ public class ColorChanger : MonoBehaviour
 		color = new Color(Random.value, Random.value, Random.value);
 		var bleah = FindObjectsOfType<SpriteRenderer>();
 		var floor = LayerMask.NameToLayer("Floor");
+		var danger = LayerMask.NameToLayer("TouchDanger");
+		var hammer = LayerMask.NameToLayer("Hammer");
+
 		for (int i = 0; i < bleah.Length; i++)
 		{
-			if(bleah[i].gameObject.layer == floor) items.Add(bleah[i]);
+			var layer = bleah[i].gameObject.layer;
+			if(layer == floor || layer == danger || layer == hammer) items.Add(bleah[i]);
 		}
 		items.Add(GetComponent<SpriteRenderer>());
 		StartCoroutine(ChangeColorsCoroutine());
