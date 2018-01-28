@@ -28,7 +28,8 @@ public class PlayerCollisions : MonoBehaviour
 		var random = Random.value;
 		if (random < probability)
 		{
-
+			var a = GetComponent<TeamMember>();
+			a.team.KillPlayer(a);
 		}
 
 		if (CollisionEvents != null) CollisionEvents(other);

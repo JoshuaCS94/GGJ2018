@@ -78,6 +78,7 @@ public class GarageManager : MonoBehaviour
     private void UpdateColor()
     {
         m_loadedCore.GetComponent<SpriteRenderer>().color = new Color(red, green, blue);
+        m_loadedRobot.GetComponent<SpriteRenderer>().color = new Color(red, green, blue);
     }
 
     public void ChangeRed()
