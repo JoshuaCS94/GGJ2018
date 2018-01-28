@@ -53,20 +53,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NetworkPort: 7777
   m_ServerBindToIP: 0
-  m_ServerBindAddress: 
+  m_ServerBindAddress: 0.0.0.0
   m_NetworkAddress: localhost
   m_DontDestroyOnLoad: 1
   m_RunInBackground: 1
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 0}
+  m_PlayerPrefab: {fileID: 1078155670971312, guid: 21a217e2f0ee04d40809051355f3eb6d,
+    type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
-  m_OfflineScene: 
-  m_OnlineScene: 
-  m_SpawnPrefabs:
-  - {fileID: 0}
+  m_OfflineScene: Lobby
+  m_OnlineScene: Lobby_Online
+  m_SpawnPrefabs: []
   m_CustomConfig: 1
   m_MaxConnections: 2
   m_ConnectionConfig:
@@ -122,3 +122,4 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  garage: {fileID: 0}

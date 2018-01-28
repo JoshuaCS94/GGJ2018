@@ -688,37 +688,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114461439521090022, guid: 4e6878b172ba82b4d872c4fdb7aa379b,
         type: 2}
-      propertyPath: m_PlayerPrefab
-      value: 
-      objectReference: {fileID: 1078155670971312, guid: 21a217e2f0ee04d40809051355f3eb6d,
-        type: 2}
-    - target: {fileID: 114461439521090022, guid: 4e6878b172ba82b4d872c4fdb7aa379b,
-        type: 2}
-      propertyPath: m_OfflineScene
-      value: Lobby
-      objectReference: {fileID: 0}
-    - target: {fileID: 114461439521090022, guid: 4e6878b172ba82b4d872c4fdb7aa379b,
-        type: 2}
-      propertyPath: m_OnlineScene
-      value: Lobby_Online
-      objectReference: {fileID: 0}
-    - target: {fileID: 114461439521090022, guid: 4e6878b172ba82b4d872c4fdb7aa379b,
-        type: 2}
-      propertyPath: m_NetworkAddress
-      value: localhost
-      objectReference: {fileID: 0}
-    - target: {fileID: 114461439521090022, guid: 4e6878b172ba82b4d872c4fdb7aa379b,
-        type: 2}
-      propertyPath: m_ServerBindToIP
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114461439521090022, guid: 4e6878b172ba82b4d872c4fdb7aa379b,
-        type: 2}
-      propertyPath: m_ServerBindAddress
-      value: 0.0.0.0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114461439521090022, guid: 4e6878b172ba82b4d872c4fdb7aa379b,
-        type: 2}
       propertyPath: garage
       value: 
       objectReference: {fileID: 1624304099}
