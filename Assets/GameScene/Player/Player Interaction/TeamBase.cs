@@ -21,8 +21,6 @@ public class TeamBase : MonoBehaviour
 	private List<TeamMember> players;
 
 
-	public GameObject TestPlayer;
-
 	public GameObject[] TestPlayers;
 
 	// Use this for initialization
