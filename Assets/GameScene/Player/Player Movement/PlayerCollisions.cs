@@ -8,7 +8,8 @@ public class PlayerCollisions : MonoBehaviour
 	public EnergyCarrier Energy;
 	public float MaxProbabilityToDie;
 
-	public event PlayerMovement.MyEvent CollisionEvent;
+	public delegate void MyEvent(Collision2D a);
+	public event MyEvent CollisionEvents;
 
 	private int PlayerLayer;
 
@@ -30,6 +31,6 @@ public class PlayerCollisions : MonoBehaviour
 
 		}
 
-		if (CollisionEvent != null) CollisionEvent();
+		if (CollisionEvents != null) CollisionEvents(other);
 	}
 }
