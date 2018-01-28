@@ -10,9 +10,14 @@ public class PortalAnimationController : MonoBehaviour
 
 	private Tweener t;
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
 		child = transform.GetChild(0);
+//		print(child);
+	}
+
+	private void Start()
+	{
 		t = child.DOLocalMoveY(1.5f, 0.5f).SetLoops(-1,LoopType.Yoyo).Pause();
 	}
 
@@ -23,11 +28,18 @@ public class PortalAnimationController : MonoBehaviour
 
 	public void StartAnimation()
 	{
+		print("start");
 		t.Play();
 	}
 
 	public void StopAnimation()
 	{
 		t.Pause();
+	}
+
+	public void ChangeColor(Color c)
+	{
+		GetComponent<SpriteRenderer>().color = c;
+		child.GetComponent<SpriteRenderer>().color = c;
 	}
 }

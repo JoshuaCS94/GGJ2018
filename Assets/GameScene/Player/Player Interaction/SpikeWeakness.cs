@@ -36,7 +36,7 @@ public class SpikeWeakness : MonoBehaviour
 
 	public void DeadCallBack()
 	{
-		Team.SpawnPlayer(gameObject.GetComponent<TeamMember>());
+		Team.KillPlayer(gameObject.GetComponent<TeamMember>());
 	}
 
 }
