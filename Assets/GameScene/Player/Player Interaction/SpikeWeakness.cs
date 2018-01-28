@@ -21,9 +21,17 @@ public class SpikeWeakness : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		GetComponent<EnergyCarrier>().Energy = 0;
-		anim.SetBool("Die", true);
+		if (other.gameObject.layer != LayerMask.NameToLayer("TouchDanger"))
+			return;
+		var pm = GetComponent<PlayerMovement>();
+		var rb = GetComponent<Rigidbody2D>();
 
+		pm.enabled = false;
+		rb.isKinematic = true;
+		rb.velocity = Vector3.zero;
+		GetComponent<EnergyCarrier>().Energy = 0;
+//		anim.SetBool("Die", true);
+		DeadCallBack();
 	}
 
 	public void DeadCallBack()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class TeamBase : MonoBehaviour
@@ -42,7 +43,7 @@ public class TeamBase : MonoBehaviour
 		}
 
 		bc2d = player.GetComponentInChildren<BoxCollider2D>();
-		var p = player.AddComponent<TeamMember>();
+		var p = player.transform.Find("Movement").gameObject.AddComponent<TeamMember>();
 		p.identifier = TeamMembersCount;
 
 		SpawnPlayer(p);
@@ -58,24 +59,29 @@ public class TeamBase : MonoBehaviour
 		var size = bc2d.bounds.extents;
 		var s_point = TeamSpawnPoints[player.identifier];
 
-		player.gameObject.transform.position = s_point.transform.position;
-
-
+		player.gameObject.transform.SetZ(1);
+		player.gameObject.transform.SetX(s_point.transform.position.x);
+		player.gameObject.transform.SetY(s_point.transform.position.y - size.y);
 
 		var pos = new Vector3(s_point.transform.position.x, s_point.transform.position.y + size.y);
 		var collision = Physics2D.OverlapBox(pos, size, layer);
-		if (collision != null)
+
+		if (collision != null && collision.gameObject != player.gameObject )
 		{
+			print(collision.gameObject);
 			StartCoroutine("WaitForSpawn", player);
+			return;
 		}
 
-
-
+		InvokePlayer(player);
 	}
 
 	IEnumerator WaitForSpawn(TeamMember player)
 	{
+
 		var size = bc2d.bounds.extents;
+		print("size =" + size.y);
+
 		var s_point = TeamSpawnPoints[player.identifier];
 
 		var pos = new Vector3(s_point.transform.position.x, s_point.transform.position.y + size.y);
@@ -90,8 +96,18 @@ public class TeamBase : MonoBehaviour
 
 	void InvokePlayer(TeamMember player)
 	{
-		var size = bc2d.bounds.extents;
+		var pm = player.GetComponent<PlayerMovement>();
+		var rb = player.GetComponent<Rigidbody2D>();
 
+		var size = bc2d.bounds.extents;
+		var s_point = TeamSpawnPoints[player.identifier];
+
+		player.transform.DOMoveY(s_point.transform.position.y + 4 * size.y, 0.2f).OnComplete(() =>
+		{
+			print("meh");
+			pm.enabled = true;
+			rb.isKinematic = false;
+		});
 	}
 }
 
