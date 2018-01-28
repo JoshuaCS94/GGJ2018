@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: -1
+  keyCode: 274
 --- !u!1 &1041789890
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
+  keyCode: 275
 --- !u!1 &1205285646
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
+  keyCode: 273
 --- !u!1 &1631362987
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: -1
+  keyCode: 276
 --- !u!114 &1631362990
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -36,8 +36,8 @@ public class GameManager_Client : MonoBehaviour
 
 		var b = m_controlHandler.Burst;
 
-		if (b != null)
-			SendBurst(b.Value);
+		if (b != KeyCode.None)
+			SendBurst(b);
 	}
 
 	private void SendMovement(float x, float y)

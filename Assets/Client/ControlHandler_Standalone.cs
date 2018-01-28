@@ -3,7 +3,7 @@
 public class ControlHandler_Standalone : MonoBehaviour, IControlHandler
 {
     public Vector2 Movement { get; set; }
-    public KeyCode? Burst { get; set; }
+    public KeyCode Burst { get; set; }
 
     private void Update()
     {
@@ -30,6 +30,6 @@ public class ControlHandler_Standalone : MonoBehaviour, IControlHandler
         else if (Input.GetKeyDown(KeyCode.DownArrow))
             Burst = KeyCode.DownArrow;
         else
-            Burst = null;
+            Burst = KeyCode.None;
     }
 }
