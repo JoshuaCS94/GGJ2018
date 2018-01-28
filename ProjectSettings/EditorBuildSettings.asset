@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Lobby/Lobby.unity
-    guid: 829c11c66f22bdf49ae038e2d7cf69c7
+    guid: 534cfff345aa234459bc3f26f01df90e
   - enabled: 1
     path: Assets/Lobby/Lobby_Online.unity
     guid: 29f2beefc47f08f4da54ca90c507c38e
