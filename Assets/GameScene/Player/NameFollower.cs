@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class NameFollower : MonoBehaviour {
 
-	public GameObject robot;
+	public Transform follow;
 
 	private Text text;
 //	public Camera camera;
@@ -19,13 +19,13 @@ public class NameFollower : MonoBehaviour {
 		text = GetComponentInChildren<Text>();
 		text.text = name;
 		text.color = transform.parent.GetComponentInParent<PlayerData>().playerColor;
-		robot = transform.parent.gameObject;
+		follow = transform.parent.gameObject.transform;
 	}
 
 
 	// Update is called once per frame
 	void Update () {
-		transform.LookAt(robot.transform);
+		transform.LookAt(follow);
 		transform.rotation = Quaternion.identity;
 
 	}
