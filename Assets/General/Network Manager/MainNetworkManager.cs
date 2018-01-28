@@ -19,41 +19,14 @@ public class MainNetworkManager : NetworkManager
         base.OnClientSceneChanged(conn);
     }
 
-    public void _StartServer()
+    public new void StartClient()
     {
-        singleton.StartServer();
+        base.StartClient();
     }
 
-    public void _StartClient()
+    public new void StartServer()
     {
-        singleton.StartClient();
-    }
-
-    public void _StartHost()
-    {
-        singleton.StartHost();
-    }
-
-    public void _StopServer()
-    {
-        singleton.StopServer();
-    }
-
-    public void _StopClient()
-    {
-        singleton.StopClient();
-    }
-
-    public void _StopHost()
-    {
-        singleton.StopHost();
-    }
-
-    public void _StopAll()
-    {
-        _StopServer();
-        _StopClient();
-        _StopHost();
+        base.StartServer();
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
@@ -63,11 +36,11 @@ public class MainNetworkManager : NetworkManager
 
     public void ChangeIP(string IP)
     {
-        singleton.networkAddress = GameObject.Find(IP).GetComponent<InputField>().text;
+        networkAddress = IP;
     }
 
     public void ChangePort(string port)
     {
-        singleton.networkPort = int.Parse(GameObject.Find(port).GetComponent<InputField>().text);
+        networkPort = int.Parse(port);
     }
 }
