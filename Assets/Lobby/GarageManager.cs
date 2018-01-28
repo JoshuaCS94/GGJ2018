@@ -29,13 +29,33 @@ public class GarageManager : MonoBehaviour
 
     public Transform playerPreviewPosition;
 
+    public string PlayerName { get; set; }
+
+    public string CurrentBodyName
+    {
+        get { return robots[m_currentRobot].name; }
+    }
+
+    public string CurrentCoreName
+    {
+        get { return cores[m_currentCore].name; }
+    }
+
+    public Color Color
+    {
+        get { return new Color(red, green, blue); }
+    }
+
     private void Awake()
     {
         foreach(var item in Resources.LoadAll("Robots/")) robots.Add(item as GameObject);
         foreach(var item in Resources.LoadAll("Cores/")) cores.Add(item as GameObject);
+
         UpdateRobot();
         UpdateCore();
         UpdateColor();
+
+        PlayerName = "Noobie";
     }
 
     private void UpdateRobot()
