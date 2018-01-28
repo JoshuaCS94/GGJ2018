@@ -7,6 +7,10 @@ public class PlayerBurst : MonoBehaviour
 	public float force;
 	internal bool lockedBurst = false;
 
+	public delegate void MyEvent(KeyCode code);
+
+	public event MyEvent BurstEvents;
+
 	public void Burst(KeyCode direction)
 	{
 		if (lockedBurst) return;
@@ -38,7 +42,7 @@ public class PlayerBurst : MonoBehaviour
 			}
 		}
 
-		animations.Burst(direction);
+		BurstEvents(direction);
 	}
 
 	internal void BlockBurst()

@@ -6,7 +6,6 @@ public class PlayerCollisionParticles : MonoBehaviour
 	public PlayerCollisions collisions;
 	private ParticleSystem particles;
 	public float StopTime;
-	public Color pcolor;
 
 	private PlayerCollisions.MyEvent action;
 	private ParticleSystem.MinMaxCurve initialRate;
@@ -21,7 +20,7 @@ public class PlayerCollisionParticles : MonoBehaviour
 		particles = GetComponent<ParticleSystem>();
 		particles.Stop();
 		var color = particles.main;
-		color.startColor = pcolor;
+		color.startColor = Color.red;
 	}
 
 	void PlayParticles(Collision2D collision)
