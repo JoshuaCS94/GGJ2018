@@ -1,38 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.NetworkSystem;
 
-public class GameManager_Client : MonoBehaviour {
-
+public class GameManager_Client : MonoBehaviour
+{
+	private IControlHandler m_controlHandler;
 	private NetworkManager m_networkManager;
 
 	// Use this for initialization
-	void Start ()
+	private void Start ()
 	{
 		m_networkManager = GameObject.Find("Network Manager").GetComponent<NetworkManager>();
+
+//		#if UNITY_STANDALONE
+//		m_controlHandler = gameObject.AddComponent<ControlHandler_Standalone>();
+//		#elif UNITY_ANDROID
+		m_controlHandler = gameObject.AddComponent<ControlHandler_Android>();
+//		#endif
 	}
 
 	// Update is called once per frame
-	void Update()
+	private void Update()
 	{
-		var mx = Input.GetAxisRaw("Horizontal");
-		var my = Input.GetAxisRaw("Vertical");
+		ManageInput();
+	}
 
-		if (!Mathf.Approximately(mx, 0) || !Mathf.Approximately(my, 0))
-			SendMovement(mx, my);
+	private void ManageInput()
+	{
+		var m = m_controlHandler.Movement;
+
+		if (!Mathf.Approximately(m.x, 0) || !Mathf.Approximately(m.y, 0))
+			SendMovement(m.x, m.y);
 		else
 			SendFinishedMovement();
 
-		if (Input.GetKeyDown(KeyCode.UpArrow))
-			SendBurst(KeyCode.UpArrow);
-		else if (Input.GetKeyDown(KeyCode.RightArrow))
-			SendBurst(KeyCode.RightArrow);
-		else if (Input.GetKeyDown(KeyCode.LeftArrow))
-			SendBurst(KeyCode.LeftArrow);
-		else if (Input.GetKeyDown(KeyCode.DownArrow))
-			SendBurst(KeyCode.DownArrow);
+		var b = m_controlHandler.Burst;
+
+		if (b != KeyCode.None)
+			SendBurst(b);
 	}
 
 	private void SendMovement(float x, float y)
