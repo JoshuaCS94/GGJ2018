@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Pendulom Anim
+  m_Name: Pendulom AnimRL
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -18,25 +18,25 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: {x: 0, y: 0, z: 180}
+        value: {x: 0, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
         time: 0.6666667
-        value: {x: 0, y: 0, z: 125.92}
-        inSlope: {x: 0, y: 0, z: -148.33334}
-        outSlope: {x: 0, y: 0, z: -148.33334}
+        value: {x: 0, y: 0, z: 65}
+        inSlope: {x: 0, y: 0, z: 148.88889}
+        outSlope: {x: 0, y: 0, z: 148.88889}
         tangentMode: 0
       - serializedVersion: 2
         time: 0.9
-        value: {x: 0, y: 0, z: 46.5}
-        inSlope: {x: 0, y: 0, z: -88.88471}
-        outSlope: {x: 0, y: 0, z: -88.88471}
+        value: {x: 0, y: 0, z: 134}
+        inSlope: {x: 0, y: 0, z: 86.25001}
+        outSlope: {x: 0, y: 0, z: 86.25001}
         tangentMode: 0
       - serializedVersion: 2
-        time: 2.0833333
-        value: {x: 0, y: 0, z: 0}
+        time: 2
+        value: {x: 0, y: 0, z: 180}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -68,7 +68,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.0833333
+    m_StopTime: 2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -106,7 +106,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 2.0833333
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
@@ -140,7 +140,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 2.0833333
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
@@ -157,25 +157,25 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 180
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
         time: 0.6666667
-        value: 125.92
-        inSlope: -148.33334
-        outSlope: -148.33334
+        value: 65
+        inSlope: 148.88889
+        outSlope: 148.88889
         tangentMode: 136
       - serializedVersion: 2
         time: 0.9
-        value: 46.5
-        inSlope: -88.88471
-        outSlope: -88.88471
+        value: 134
+        inSlope: 86.25001
+        outSlope: 86.25001
         tangentMode: 136
       - serializedVersion: 2
-        time: 2.0833333
-        value: 0
+        time: 2
+        value: 180
         inSlope: 0
         outSlope: 0
         tangentMode: 136
