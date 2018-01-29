@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -18,14 +19,26 @@ public class GameManager : MonoBehaviour
 
 	public Text t2_energy;
 
+	public bool finished = false;
+
 	// Use this for initialization
 	void Start () {
-
+		Play();
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update()
+	{
+		if (!finished)
+		{
+			t1_energy.text = team1.Energy.ToString();
+			t2_energy.text = team2.Energy.ToString();
+		}
+	}
 
+	void Play()
+	{
+		StartCoroutine("EndGame");
 	}
 
 	IEnumerator EndGame()
@@ -36,22 +49,28 @@ public class GameManager : MonoBehaviour
 			yield return new WaitForSeconds(1);
 			Time_Passed++;
 		}
+		finished = true;
 		team1.DisablePlayers();
 		team2.DisablePlayers();
 
 
 		if (team1.Energy > team2.Energy)
 		{
-
+			t1_energy.text = "WINNER";
+			t2_energy.text = "LOOSER";
 		}
 		else if (team1.Energy < team2.Energy)
 		{
-
+			t2_energy.text = "WINNER";
+			t1_energy.text = "LOOSER";
 		}
 		else
 		{
-
+			t1_energy.text = "DRAW";
+			t2_energy.text = "DRAW";
 		}
+		yield return new WaitForSeconds(5);
 
+		SceneManager.LoadScene("Lobby");
 	}
 }

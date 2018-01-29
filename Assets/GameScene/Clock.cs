@@ -21,6 +21,7 @@ public class Clock : MonoBehaviour {
 	public void Play()
 	{
 		StartCoroutine("EndGame");
+		Play();
 	}
 
 	IEnumerator EndGame()
@@ -36,7 +37,7 @@ public class Clock : MonoBehaviour {
 			//Play Beep
 			yield return new WaitForSeconds(1);
 		}
-
+		text.text = "GAME OVER";
 	}
 
 
