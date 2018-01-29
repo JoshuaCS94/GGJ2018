@@ -50,7 +50,9 @@ public class TeamBase : MonoBehaviour
 		var c = player.GetComponent<PlayerData>().playerColor;
 		var portal = TeamSpawnPoints[TeamMembersCount].GetComponent<PortalAnimationController>();
 		portal.ChangeColor(c);
-		var p = player.transform.Find("Movement").gameObject.AddComponent<TeamMember>();
+		var mov = player.transform.Find("Movement").gameObject;
+		var p = mov.AddComponent<TeamMember>();
+		mov.AddComponent<SpikeWeakness>().Team = this;
 
 		p.identifier = TeamMembersCount;
 		p.portal = portal;
