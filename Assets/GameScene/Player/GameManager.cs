@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class GameManager : MonoBehaviour
 	public TeamBase team1;
 
 	public TeamBase team2;
+
+	public Text t1_energy;
+
+	public Text t2_energy;
 
 	// Use this for initialization
 	void Start () {
