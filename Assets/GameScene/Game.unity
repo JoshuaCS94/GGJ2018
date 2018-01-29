@@ -1845,7 +1845,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Energy: 0
-  TeamSpawnPoints: []
+  TeamSpawnPoints:
+  - {fileID: 1897985333}
+  - {fileID: 853974613}
+  - {fileID: 1670958974}
+  - {fileID: 1986722003}
   layer:
     serializedVersion: 2
     m_Bits: 256
@@ -8352,6 +8356,9 @@ MonoBehaviour:
   Energy: 0
   TeamSpawnPoints:
   - {fileID: 92673855}
+  - {fileID: 1945750824}
+  - {fileID: 1970008550}
+  - {fileID: 1345136546}
   layer:
     serializedVersion: 2
     m_Bits: 256

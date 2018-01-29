@@ -53,10 +53,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ec7819aff261540bd62d8b261e768a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   movement: {fileID: 0}
   collisions: {fileID: 0}
   StopTime: 0.1
-  pcolor: {r: 1, g: 0.9724138, b: 0, a: 1}
 --- !u!198 &198606961179691772
 ParticleSystem:
   m_ObjectHideFlags: 1

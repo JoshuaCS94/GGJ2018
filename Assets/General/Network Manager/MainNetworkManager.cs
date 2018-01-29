@@ -78,7 +78,7 @@ public class MainNetworkManager : NetworkManager
                 body.GetComponent<SpriteRenderer>().sprite;
 
             var core = Instantiate(Resources.Load("Cores/" + playerMsg.bodyCore) as GameObject);
-            core.transform.SetParent(player.transform.GetChild(1), true);
+            core.transform.SetParent(player.transform.GetChild(1), false);
             core.GetComponent<SpriteRenderer>().material.color = playerMsg.color;
 
             var playerData = player.GetComponent<PlayerData>();
