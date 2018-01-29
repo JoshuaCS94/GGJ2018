@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class WellcomeManager : MonoBehaviour
@@ -10,6 +11,9 @@ public class WellcomeManager : MonoBehaviour
 
 	public void StartGame()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+		var a = FindObjectOfType<SceneTransitioner>();
+		a.FadeBlack().OnComplete(() =>
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+
 	}
 }
