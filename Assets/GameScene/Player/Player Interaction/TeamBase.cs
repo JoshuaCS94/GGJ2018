@@ -54,6 +54,7 @@ public class TeamBase : MonoBehaviour
 
 		p.identifier = TeamMembersCount;
 		p.portal = portal;
+		p.team = this;
 		players.Add(p);
 
 		TeamMembersCount++;
