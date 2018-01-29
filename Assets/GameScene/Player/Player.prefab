@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Acceleration: 2
-  BrakeAcceleration: 3
+  BrakeAcceleration: 5
   MinSpeed: 2
   MaxSpeed: 10
   AirAcceleration: 3
