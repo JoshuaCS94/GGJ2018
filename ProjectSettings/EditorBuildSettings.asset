@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Team Logo/Logo Test.unity
+    guid: 8b2338d73749cbb42a160fc28658b8d5
+  - enabled: 1
+    path: Assets/WellcomeScreen/WellcomeScreen.unity
+    guid: b8f5e745ef365fb459e50aacb984bb2d
+  - enabled: 1
     path: Assets/Lobby/Lobby.unity
     guid: 534cfff345aa234459bc3f26f01df90e
   - enabled: 1
@@ -23,6 +29,3 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameScene/Game.unity
     guid: ad793042609e14f428ab960b34e20519
-  - enabled: 1
-    path: Assets/WellcomeScreen/WellcomeScreen.unity
-    guid: b8f5e745ef365fb459e50aacb984bb2d
