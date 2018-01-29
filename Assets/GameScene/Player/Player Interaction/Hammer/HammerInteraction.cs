@@ -45,7 +45,7 @@ public class HammerInteraction : MonoBehaviour
 
 			rb.AddForce(direction*-300 + Vector3.left*1000);
 		}
-		else
+		else if(Right.IsTouchingLayers(Affected))
 		{
 			var mypos = Right.bounds.center;
 //			var contact = other.contacts[points / 2].point;

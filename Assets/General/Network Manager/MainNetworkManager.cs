@@ -102,6 +102,8 @@ public class MainNetworkManager : NetworkManager
             {
                 team2.AddPlayer(player);
             }
+
+            m_currentTeam++;
         }
     }
 
