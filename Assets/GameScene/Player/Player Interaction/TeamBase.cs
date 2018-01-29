@@ -20,6 +20,8 @@ public class TeamBase : MonoBehaviour
 	private BoxCollider2D bc2d;
 	public List<TeamMember> players = new List<TeamMember>();
 
+	public Transform initial_spawn_point;
+
 	public GameObject[] TestPlayers;
 
 	// Update is called once per frame
@@ -43,7 +45,7 @@ public class TeamBase : MonoBehaviour
 		{
 			return;
 		}
-
+//		player.transform.position =
 		bc2d = player.GetComponentInChildren<BoxCollider2D>();
 		var c = player.GetComponent<PlayerData>().playerColor;
 		var portal = TeamSpawnPoints[TeamMembersCount].GetComponent<PortalAnimationController>();
@@ -56,6 +58,7 @@ public class TeamBase : MonoBehaviour
 
 		TeamMembersCount++;
 
+		player.transform.position = initial_spawn_point.transform.position;
 		SpawnPlayer(p);
 	}
 
