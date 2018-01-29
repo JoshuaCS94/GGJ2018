@@ -18,7 +18,7 @@ public class NameFollower : MonoBehaviour {
 		string name = transform.parent.GetComponentInParent<PlayerData>().playerName;
 		text = GetComponentInChildren<Text>();
 		text.text = name;
-		text.color = GetComponentInParent<PlayerData>().playerColor;
+		text.color = transform.parent.GetComponentInParent<PlayerData>().playerColor;
 		robot = transform.parent.gameObject;
 	}
 
