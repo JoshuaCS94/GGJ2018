@@ -5,13 +5,14 @@ using UnityEngine.EventSystems;
 public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
 	public bool fixedPosition;
+	public Vector2 Value { get; private set; }
 
 	private RectTransform m_movArea;
 	private RectTransform m_nipple;
 	private RectTransform m_deadArea;
 
 	private float m_movAreaSize;
-	private float m_deadAreaSize;
+	private float m_deadAreaSizeSqr;
 
 	// Use this for initialization
 	private void Start()
@@ -21,9 +22,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 		m_nipple = transform.GetChild(2) as RectTransform;
 
 		m_movAreaSize = m_movArea.sizeDelta.x / 2;
-		m_deadAreaSize = m_deadArea.sizeDelta.x / 2;
-
-		print(m_movAreaSize);
+		var deadAreaSize = m_deadArea.sizeDelta.x / 2;
+		m_deadAreaSizeSqr = deadAreaSize * deadAreaSize;
 
 		if (fixedPosition)
 		{
@@ -45,7 +45,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-
+		Value = Vector2.zero;
 	}
 
 	public void OnDrag(PointerEventData eventData)
@@ -55,9 +55,14 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 		else
 		{
 			var movAreaPos = (Vector2) m_movArea.position;
-			var delta = eventData.position - movAreaPos;
 
-			m_nipple.position = movAreaPos + Vector2.ClampMagnitude(delta, m_movAreaSize);
+			var delta = Vector2.ClampMagnitude(eventData.position - movAreaPos, m_movAreaSize);
+
+			if (delta.sqrMagnitude < m_deadAreaSizeSqr) return;
+
+			m_nipple.position = movAreaPos + delta;
+
+			Value = delta / m_movAreaSize;
 		}
 	}
 }
