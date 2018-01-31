@@ -84,18 +84,9 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
 			var delta = Vector2.ClampMagnitude(eventData.position - movAreaPos, m_movAreaSize);
 
-			if (delta.sqrMagnitude < m_deadAreaSizeSqr)
-			{
-				m_nipple.position = movAreaPos;
+			Value = delta.sqrMagnitude < m_deadAreaSizeSqr ? Vector2.zero : delta / m_movAreaSize;
 
-				Value = Vector2.zero;
-			}
-			else
-			{
-				m_nipple.position = movAreaPos + delta;
-
-				Value = delta / m_movAreaSize;
-			}
+			m_nipple.position = movAreaPos + delta;
 		}
 	}
 }

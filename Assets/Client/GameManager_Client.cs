@@ -12,11 +12,12 @@ public class GameManager_Client : MonoBehaviour
 	{
 		m_networkManager = GameObject.Find("Network Manager").GetComponent<NetworkManager>();
 
-		#if UNITY_STANDALONE
-		m_controlHandler = gameObject.AddComponent<ControlHandler_Standalone>();
-		#elif UNITY_ANDROID
-		m_controlHandler = gameObject.AddComponent<ControlHandler_Android>();
-		#endif
+		m_controlHandler = GameObject.Find("Game Controller")
+			#if UNITY_STANDALONE
+			.AddComponent<ControlHandler_Standalone>();
+			#elif UNITY_ANDROID
+			.AddComponent<ControlHandler_Android>();
+			#endif
 	}
 
 	// Update is called once per frame
