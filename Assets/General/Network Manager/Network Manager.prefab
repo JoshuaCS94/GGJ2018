@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnlineScene: Lobby_Online
   m_SpawnPrefabs: []
   m_CustomConfig: 1
-  m_MaxConnections: 2
+  m_MaxConnections: 10
   m_ConnectionConfig:
     m_PacketSize: 1500
     m_FragmentSize: 500
