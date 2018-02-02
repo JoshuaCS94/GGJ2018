@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Networking.NetworkSystem;
 
 
 internal enum GameMsgType
 {
-	Movement = 1000, FinishedMovement, Burst
+	Movement = 1000, Jump, Burst
 }
 
-internal class MovementMessage : MessageBase
-{
-	public Vector2 delta;
-}
 
 internal class BurstMessage : MessageBase
 {
@@ -24,26 +21,24 @@ public class GameManager_Server : MonoBehaviour {
 	private void Start()
 	{
 		NetworkServer.RegisterHandler((short)GameMsgType.Movement, MovementHandler);
-		NetworkServer.RegisterHandler((short)GameMsgType.FinishedMovement, FinishedMovementHandler);
+		NetworkServer.RegisterHandler((short)GameMsgType.Jump, JumpHandler);
 		NetworkServer.RegisterHandler((short)GameMsgType.Burst, BurstHandler);
-	}
-
-	private void FinishedMovementHandler(NetworkMessage netMsg)
-	{
-		var player = netMsg.conn.playerControllers[0].gameObject.GetComponentInChildren<PlayerMovement>();
-
-		player.x = 0;
-		player.y = 0;
 	}
 
 	private void MovementHandler(NetworkMessage netMsg)
 	{
-		var movMsg = netMsg.ReadMessage<MovementMessage>();
+		var movMsg = netMsg.ReadMessage<IntegerMessage>();
 
 		var player = netMsg.conn.playerControllers[0].gameObject.GetComponentInChildren<PlayerMovement>();
 
-		player.x = movMsg.delta.x;
-		player.y = movMsg.delta.y;
+		player.movement = movMsg.value;
+	}
+
+	private void JumpHandler(NetworkMessage netMsg)
+	{
+		var player = netMsg.conn.playerControllers[0].gameObject.GetComponentInChildren<PlayerMovement>();
+
+		player.jump = true;
 	}
 
 	private void BurstHandler(NetworkMessage netMsg)

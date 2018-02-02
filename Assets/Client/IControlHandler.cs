@@ -2,6 +2,7 @@
 
 public interface IControlHandler
 {
-    Vector2 Movement { get; set; }
+    int Movement { get; }
+    bool Jump { get; }
     KeyCode Burst { get; set; }
 }
