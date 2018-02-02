@@ -23,16 +23,18 @@ public class ControlHandler_Android : MonoBehaviour, IControlHandler
         Jump = m_jumpBtn.GetButtonDown();
 
         var flag1 = m_joystick.Value.x >  m_joystick.Value.y;
-        var flag2 = m_joystick.Value.x > -m_joystick.Value.y;
+        var flag2 = m_joystick.Value.x < -m_joystick.Value.y;
 
-        if (!(flag1 ^ flag2))
-            Movement = Mathf.Approximately(m_joystick.Value.x, 0) ? 0 : System.Math.Sign(m_joystick.Value.x);
+        Movement = 0;
+
+        if (flag1 ^ flag2)
+            Movement = System.Math.Sign(m_joystick.Value.x);
 
         if (m_burstBtn.GetButtonDown())
             if (flag1)
-                Burst = flag2 ? KeyCode.LeftArrow : KeyCode.DownArrow;
+                Burst = flag2 ? KeyCode.DownArrow : KeyCode.RightArrow;
             else
-                Burst = flag2 ? KeyCode.UpArrow : KeyCode.RightArrow;
+                Burst = flag2 ? KeyCode.LeftArrow : KeyCode.UpArrow;
         else
             Burst = KeyCode.None;
     }
