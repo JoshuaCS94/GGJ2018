@@ -37,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
 	public SpriteRenderer Renderer;
 	public PlayerData data;
 
-	[HideInInspector] public float x;
-	[HideInInspector] public float y;
+	[HideInInspector] public int movement;
+	[HideInInspector] public bool jump;
 
 	private Collider2D collider;
 	private Collider2D[] colliding = new Collider2D[20];
@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		float increase;
 		float decrease;
-		float xsign = Mathf.Sign(x);
+		float xsign = Mathf.Sign(movement);
 		float velsign = Mathf.Sign(rb.velocity.x);
 		float minSpeed;
 		float maxSpeed;
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			absx = rb.velocity.magnitude;
 			rb.gravityScale = 0;
-			increase = x * Time.fixedDeltaTime * Acceleration * 10;
+			increase = movement * Time.fixedDeltaTime * Acceleration * 10;
 			decrease = Time.fixedDeltaTime * BrakeAcceleration * 10;
 			minSpeed = MinSpeed - energySlow;
 			maxSpeed = MaxSpeed - energySlow;
@@ -134,17 +134,17 @@ public class PlayerMovement : MonoBehaviour
 		{
 			absx = Mathf.Abs(rb.velocity.x);
 			rb.gravityScale = initialGravityScale;
-			increase = x * Time.fixedDeltaTime * AirAcceleration * 10;
+			increase = movement * Time.fixedDeltaTime * AirAcceleration * 10;
 			decrease = Time.fixedDeltaTime * AirBrakeAcceleration * 10;
 			minSpeed = AirMinSpeed - energySlow;
 			maxSpeed = AirMaxSpeed - energySlow;
 		}
 
-		if (Mathf.Abs(x) > .01f)
+		if (Mathf.Abs(movement) > .01f)
 		{
 			if (absx < minSpeed)
 			{
-				var v = transform.right.normalized * minSpeed * Mathf.Sign(x);
+				var v = transform.right.normalized * minSpeed * Mathf.Sign(movement);
 				rb.velocity = new Vector2(v.x, v.y + rb.velocity.y);
 			}
 
@@ -205,11 +205,12 @@ public class PlayerMovement : MonoBehaviour
 
 	void HandleJump()
 	{
-		if (grounded && y > 0 && !blockedJump)
+		if (grounded && jump && !blockedJump)
 		{
 			if (JumpEvents != null) JumpEvents();
 			playerBurst.BlockBurst();
 			rb.AddForce(Vector2.up * JumpForce);
+			jump = false;
 		}
 	}
 

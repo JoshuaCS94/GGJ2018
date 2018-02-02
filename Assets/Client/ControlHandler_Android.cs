@@ -2,7 +2,8 @@
 
 public class ControlHandler_Android : MonoBehaviour, IControlHandler
 {
-    public Vector2 Movement { get; set; }
+    public int Movement { get; set; }
+    public bool Jump { get; set; }
     public KeyCode Burst { get; set; }
 
     private Joystick m_joystick;
@@ -17,7 +18,22 @@ public class ControlHandler_Android : MonoBehaviour, IControlHandler
     }
 
     // Update is called once per frame
-    void Update () {
+    private void Update ()
+    {
+        Jump = m_jumpBtn.GetButtonDown();
 
+        var flag1 = m_joystick.Value.x >  m_joystick.Value.y;
+        var flag2 = m_joystick.Value.x > -m_joystick.Value.y;
+
+        if (!(flag1 ^ flag2))
+            Movement = Mathf.Approximately(m_joystick.Value.x, 0) ? 0 : System.Math.Sign(m_joystick.Value.x);
+
+        if (m_burstBtn.GetButtonDown())
+            if (flag1)
+                Burst = flag2 ? KeyCode.LeftArrow : KeyCode.DownArrow;
+            else
+                Burst = flag2 ? KeyCode.UpArrow : KeyCode.RightArrow;
+        else
+            Burst = KeyCode.None;
     }
 }

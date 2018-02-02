@@ -2,21 +2,27 @@
 
 public class ControlHandler_Standalone : MonoBehaviour, IControlHandler
 {
-    public Vector2 Movement { get; set; }
+    public int Movement { get; set; }
+    public bool Jump { get; set; }
     public KeyCode Burst { get; set; }
 
     private void Update()
     {
         HandleMovement();
+        HandleJump();
         HandleBurst();
     }
 
     private void HandleMovement()
     {
-        var mx = Input.GetAxisRaw("Horizontal");
-        var my = Input.GetAxisRaw("Vertical");
+        var m = Input.GetAxisRaw("Horizontal");
 
-        Movement = new Vector2(mx, my);
+        Movement = Mathf.Approximately(m, 0) ? 0 : System.Math.Sign(m);
+    }
+
+    private void HandleJump()
+    {
+        Jump = Input.GetKeyDown(KeyCode.W);
     }
 
     private void HandleBurst()

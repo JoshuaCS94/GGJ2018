@@ -5,50 +5,39 @@ using UnityEngine.EventSystems;
 
 public class ControlButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-	private bool m_recentDown;
-	private bool m_clearRecentDown;
-	private bool m_recentUp;
-	private bool m_clearRecentUp;
+	private bool m_down;
+	private bool m_downNow;
+	private bool m_upNow;
 
-	// Update is called once per frame
-	private void Update()
+	private void LateUpdate()
 	{
-		if (m_recentDown)
-			if (m_clearRecentDown)
-				m_recentDown = false;
-			else m_clearRecentDown = true;
-
-		if (!m_recentUp) return;
-
-		if (m_clearRecentUp)
-			m_recentUp = false;
-		else m_clearRecentUp = true;
+		m_downNow = false;
+		m_upNow = false;
 	}
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		m_recentDown = true;
-		m_clearRecentUp = false;
+		m_down = m_downNow = true;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		m_recentUp = true;
-		m_clearRecentDown = false;
+		m_down = false;
+		m_upNow = true;
 	}
 
 	public bool GetButton()
 	{
-		return m_recentDown || m_clearRecentDown;
+		return m_down;
 	}
 
 	public bool GetButtonDown()
 	{
-		return m_recentDown;
+		return m_downNow;
 	}
 
 	public bool GetButtonUp()
 	{
-		return m_recentUp;
+		return m_upNow;
 	}
 }

@@ -13,11 +13,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 	public Vector2 Value { get; private set; }
 
 	private RectTransform m_movArea;
-	private float m_movAreaSize;
-
 	private RectTransform m_deadArea;
-	private float m_deadAreaSizeSqr;
-
 	private RectTransform m_nipple;
 
 	private Sequence m_animation;
@@ -25,15 +21,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 	// Use this for initialization
 	private void Start()
 	{
-		var canvasScale = GameObject.Find("Canvas").transform.localScale;
-
 		m_movArea = transform.GetChild(0) as RectTransform;
-		m_movAreaSize = m_movArea.rect.width * canvasScale.x / 2;
-
 		m_deadArea = transform.GetChild(1) as RectTransform;
-		var deadAreaSize = m_deadArea.rect.width * canvasScale.x / 2;
-		m_deadAreaSizeSqr = deadAreaSize * deadAreaSize;
-
 		m_nipple = transform.GetChild(2) as RectTransform;
 
 		var movAreaImg = m_movArea.GetComponent<Image>();
@@ -76,15 +65,19 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
 	public void OnDrag(PointerEventData eventData)
 	{
+		var movAreaSize = m_movArea.rect.width * m_movArea.transform.lossyScale.x / 2;
+		var deadAreaSize = m_deadArea.rect.width * m_deadArea.transform.lossyScale.x / 2;
+		var deadAreaSizeSqr = deadAreaSize * deadAreaSize;
+
 		if (fixedPosition)
 		{}
 		else
 		{
 			var movAreaPos = (Vector2) m_movArea.position;
 
-			var delta = Vector2.ClampMagnitude(eventData.position - movAreaPos, m_movAreaSize);
+			var delta = Vector2.ClampMagnitude(eventData.position - movAreaPos, movAreaSize);
 
-			Value = delta.sqrMagnitude < m_deadAreaSizeSqr ? Vector2.zero : delta / m_movAreaSize;
+			Value = delta.sqrMagnitude < deadAreaSizeSqr ? Vector2.zero : delta / movAreaSize;
 
 			m_nipple.position = movAreaPos + delta;
 		}
