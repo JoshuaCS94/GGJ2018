@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class PlayerCreationMsg : MessageBase
@@ -20,14 +22,19 @@ public class MainNetworkManager : NetworkManager
 
     public override void OnServerSceneChanged(string sceneName)
     {
-        SceneManager.LoadScene("Level 0", LoadSceneMode.Additive);
-        SceneManager.LoadSceneAsync("Game");
+        var loading = GameObject.Find("Loading").GetComponent<Text>();
 
+        SceneManager.LoadScene("Level 0", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+
+        loading.DOFade(0, 3);
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        SceneManager.LoadSceneAsync("Client");
+        var loading = GameObject.Find("Loading").GetComponent<Text>();
+
+        SceneManager.LoadScene("Client", LoadSceneMode.Additive);
 
         ClientScene.Ready(conn);
 
@@ -41,6 +48,8 @@ public class MainNetworkManager : NetworkManager
             bodyCore = lobbyManager.CurrentCoreName,
             color = lobbyManager.Color
         });
+
+        loading.DOFade(0, 3);
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
