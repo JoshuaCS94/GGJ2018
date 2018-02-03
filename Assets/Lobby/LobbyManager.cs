@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GarageManager : MonoBehaviour
+public class LobbyManager : MonoBehaviour
 {
     [Header("References")]
     public Text robotText;
@@ -125,9 +125,9 @@ public class GarageManager : MonoBehaviour
         UpdateColor();
     }
 
-    public void FinishSelection()
+    public void Back()
     {
-        GameObject.Find("PartContainer").GetComponent<PartContainer>().parts = new string[] { robots[m_currentRobot].name, cores[m_currentCore].name };
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+
 }

@@ -14,19 +14,20 @@ public class PlayerCreationMsg : MessageBase
 
 public class MainNetworkManager : NetworkManager
 {
-    public GarageManager garage;
+    public LobbyManager lobbyManager;
 
     private int m_currentTeam = 0;
 
     public override void OnServerSceneChanged(string sceneName)
     {
         SceneManager.LoadScene("Level 0", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Game");
+
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        SceneManager.LoadScene("Client", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Client");
 
         ClientScene.Ready(conn);
 
@@ -35,10 +36,10 @@ public class MainNetworkManager : NetworkManager
 
         ClientScene.AddPlayer(conn, 0, new PlayerCreationMsg
         {
-            name = garage.PlayerName,
-            bodyBase = garage.CurrentBodyName,
-            bodyCore = garage.CurrentCoreName,
-            color = garage.Color
+            name = lobbyManager.PlayerName,
+            bodyBase = lobbyManager.CurrentBodyName,
+            bodyCore = lobbyManager.CurrentCoreName,
+            color = lobbyManager.Color
         });
     }
 
@@ -115,11 +116,6 @@ public class MainNetworkManager : NetworkManager
     public new void StartServer()
     {
         base.StartServer();
-    }
-
-    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
-    {
-        base.OnServerAddPlayer(conn, playerControllerId);
     }
 
     public void ChangeIP(string IP)
