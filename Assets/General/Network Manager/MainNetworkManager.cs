@@ -117,11 +117,6 @@ public class MainNetworkManager : NetworkManager
         base.StartServer();
     }
 
-    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
-    {
-        base.OnServerAddPlayer(conn, playerControllerId);
-    }
-
     public void ChangeIP(string IP)
     {
         networkAddress = IP;

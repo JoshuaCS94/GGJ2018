@@ -125,12 +125,6 @@ public class LobbyManager : MonoBehaviour
         UpdateColor();
     }
 
-    public void FinishSelection()
-    {
-        GameObject.Find("PartContainer").GetComponent<PartContainer>().parts = new string[] { robots[m_currentRobot].name, cores[m_currentCore].name };
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
     public void Back()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
