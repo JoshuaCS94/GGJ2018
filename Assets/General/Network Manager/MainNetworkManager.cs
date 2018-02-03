@@ -21,12 +21,13 @@ public class MainNetworkManager : NetworkManager
     public override void OnServerSceneChanged(string sceneName)
     {
         SceneManager.LoadScene("Level 0", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Game");
+
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        SceneManager.LoadScene("Client", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Client");
 
         ClientScene.Ready(conn);
 
