@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GarageManager : MonoBehaviour
+public class LobbyManager : MonoBehaviour
 {
     [Header("References")]
     public Text robotText;

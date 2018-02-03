@@ -14,7 +14,7 @@ public class PlayerCreationMsg : MessageBase
 
 public class MainNetworkManager : NetworkManager
 {
-    public GarageManager garage;
+    public LobbyManager lobbyManager;
 
     private int m_currentTeam = 0;
 
@@ -35,10 +35,10 @@ public class MainNetworkManager : NetworkManager
 
         ClientScene.AddPlayer(conn, 0, new PlayerCreationMsg
         {
-            name = garage.PlayerName,
-            bodyBase = garage.CurrentBodyName,
-            bodyCore = garage.CurrentCoreName,
-            color = garage.Color
+            name = lobbyManager.PlayerName,
+            bodyBase = lobbyManager.CurrentBodyName,
+            bodyCore = lobbyManager.CurrentCoreName,
+            color = lobbyManager.Color
         });
     }
 

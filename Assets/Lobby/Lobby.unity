@@ -195,7 +195,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1624304099}
+      - m_Target: {fileID: 1394978308}
         m_MethodName: ChangeBlue
         m_Mode: 1
         m_Arguments:
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -777,7 +777,12 @@ Prefab:
         type: 2}
       propertyPath: garage
       value: 
-      objectReference: {fileID: 1624304099}
+      objectReference: {fileID: 1394978308}
+    - target: {fileID: 114461439521090022, guid: 4e6878b172ba82b4d872c4fdb7aa379b,
+        type: 2}
+      propertyPath: lobbyManager
+      value: 
+      objectReference: {fileID: 1394978308}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e6878b172ba82b4d872c4fdb7aa379b, type: 2}
   m_IsPrefabParent: 0
@@ -1111,7 +1116,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1130,7 +1135,7 @@ RectTransform:
   - {fileID: 2006758598}
   - {fileID: 1047277931}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1202,7 +1207,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -369298211
+  randomSeed: -237752361
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4956,7 +4961,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &939574904
 GameObject:
@@ -5186,7 +5191,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1000268104}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1309549439}
@@ -5210,7 +5215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.1254902}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5593,7 +5598,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1624304099}
+      - m_Target: {fileID: 1394978308}
         m_MethodName: ChangeRed
         m_Mode: 1
         m_Arguments:
@@ -5765,7 +5770,7 @@ GameObject:
   - component: {fileID: 1259829079}
   - component: {fileID: 1259829078}
   m_Layer: 5
-  m_Name: BackButtonWings
+  m_Name: Previous Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5778,7 +5783,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1259829076}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1000474573}
@@ -5829,7 +5834,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1624304099}
+      - m_Target: {fileID: 1394978308}
         m_MethodName: PreviousCore
         m_Mode: 1
         m_Arguments:
@@ -5957,71 +5962,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -15}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1355315464
+--- !u!1 &1394978307
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 1355315466}
-  - component: {fileID: 1355315465}
+  - component: {fileID: 1394978309}
+  - component: {fileID: 1394978308}
   m_Layer: 0
-  m_Name: Directional light
+  m_Name: Lobby Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!108 &1355315465
-Light:
+--- !u!114 &1394978308
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1355315464}
+  m_GameObject: {fileID: 1394978307}
   m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.4
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1355315466
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43dbf9719240848468244b64ddc2dcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotText: {fileID: 1612970650}
+  coreText: {fileID: 2144824097}
+  robots: []
+  cores: []
+  redSlider: {fileID: 1065903802}
+  greenSlider: {fileID: 1481065381}
+  blueSlider: {fileID: 72044124}
+  playerPreviewPosition: {fileID: 1145358751}
+--- !u!4 &1394978309
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1355315464}
-  m_LocalRotation: {x: 0, y: -0.258819, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: -15.690206, y: 781.04095, z: 0}
+  m_GameObject: {fileID: 1394978307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -30, z: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1481065379
 GameObject:
   m_ObjectHideFlags: 0
@@ -6104,7 +6092,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1624304099}
+      - m_Target: {fileID: 1394978308}
         m_MethodName: ChangeGreen
         m_Mode: 1
         m_Arguments:
@@ -6446,12 +6434,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1612970648}
---- !u!114 &1624304099 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114928421984630354, guid: 5ebdb431aed39c1428bd0caba185b3e9,
-    type: 2}
-  m_PrefabInternal: {fileID: 2076470958}
-  m_Script: {fileID: 11500000, guid: 43dbf9719240848468244b64ddc2dcbb, type: 3}
 --- !u!1 &1771783197
 GameObject:
   m_ObjectHideFlags: 0
@@ -6539,7 +6521,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1624304099}
+      - m_Target: {fileID: 1394978308}
         m_MethodName: set_PlayerName
         m_Mode: 0
         m_Arguments:
@@ -6677,7 +6659,7 @@ GameObject:
   - component: {fileID: 1955202964}
   - component: {fileID: 1955202963}
   m_Layer: 5
-  m_Name: ForwardButtonWings
+  m_Name: Next Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6690,7 +6672,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1955202961}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1049974914}
@@ -6741,7 +6723,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1624304099}
+      - m_Target: {fileID: 1394978308}
         m_MethodName: NextCore
         m_Mode: 1
         m_Arguments:
@@ -7217,7 +7199,12 @@ Prefab:
       propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4403579772022428, guid: 5ebdb431aed39c1428bd0caba185b3e9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114928421984630354, guid: 5ebdb431aed39c1428bd0caba185b3e9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5ebdb431aed39c1428bd0caba185b3e9, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2144824095
@@ -7231,7 +7218,7 @@ GameObject:
   - component: {fileID: 2144824098}
   - component: {fileID: 2144824097}
   m_Layer: 5
-  m_Name: WingsText
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7253,7 +7240,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 50}
+  m_SizeDelta: {x: 165, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2144824097
 MonoBehaviour:
@@ -7268,7 +7255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 0, a: 0.76862746}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
