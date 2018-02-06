@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WellcomeManager : MonoBehaviour
+public class HomeManager : MonoBehaviour
 {
 	public void ExitGame()
 	{

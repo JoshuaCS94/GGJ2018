@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198039347784277662}
   - component: {fileID: 199096980779847588}
   m_Layer: 0
-  m_Name: EnergyParticles
+  m_Name: Energy Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

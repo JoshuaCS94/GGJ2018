@@ -497,8 +497,8 @@ MonoBehaviour:
   MaxEnergySlow: 8
   Renderer: {fileID: 212152618360767446}
   data: {fileID: 114245136970077112}
-  x: 0
-  y: 0
+  movement: 0
+  jump: 0
 --- !u!114 &114440049274588202
 MonoBehaviour:
   m_ObjectHideFlags: 1

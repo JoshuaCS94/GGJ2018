@@ -200,7 +200,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1249503389}
+      - m_Target: {fileID: 1249503390}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -333,7 +333,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1249503389}
+      - m_Target: {fileID: 1249503390}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -446,7 +446,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 46943316643315e4ca93ea4f8d89fcb7,
+      objectReference: {fileID: 21300000, guid: 6e5423277a077c443914f8377732bb69,
         type: 3}
     - target: {fileID: 212152618360767446, guid: 21a217e2f0ee04d40809051355f3eb6d,
         type: 2}
@@ -465,6 +465,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114028081785980682, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
+    - {fileID: 114639702125434898, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &435061798
@@ -608,7 +609,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 46943316643315e4ca93ea4f8d89fcb7,
+      objectReference: {fileID: 21300000, guid: 6e5423277a077c443914f8377732bb69,
         type: 3}
     - target: {fileID: 212152618360767446, guid: 21a217e2f0ee04d40809051355f3eb6d,
         type: 2}
@@ -627,6 +628,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114028081785980682, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
+    - {fileID: 114639702125434898, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &590887506
@@ -758,7 +760,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 46943316643315e4ca93ea4f8d89fcb7,
+      objectReference: {fileID: 21300000, guid: 6e5423277a077c443914f8377732bb69,
         type: 3}
     - target: {fileID: 212152618360767446, guid: 21a217e2f0ee04d40809051355f3eb6d,
         type: 2}
@@ -777,6 +779,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114028081785980682, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
+    - {fileID: 114639702125434898, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &764138150
@@ -885,7 +888,7 @@ GameObject:
   - component: {fileID: 849717139}
   - component: {fileID: 849717138}
   m_Layer: 0
-  m_Name: WellcomeManager
+  m_Name: Home Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1251,7 +1254,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 46943316643315e4ca93ea4f8d89fcb7,
+      objectReference: {fileID: 21300000, guid: 6e5423277a077c443914f8377732bb69,
         type: 3}
     - target: {fileID: 212152618360767446, guid: 21a217e2f0ee04d40809051355f3eb6d,
         type: 2}
@@ -1270,6 +1273,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114028081785980682, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
+    - {fileID: 114639702125434898, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1249503388
@@ -1297,10 +1301,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1249503388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545df6b5f6b147743a2903c28380d846, type: 3}
+  m_Script: {fileID: 11500000, guid: acb66734995073d4ab4fe033d34a4d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 1249503390}
 --- !u!82 &1249503390
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1404,7 +1407,7 @@ GameObject:
   - component: {fileID: 1369530667}
   - component: {fileID: 1369530666}
   m_Layer: 9
-  m_Name: GameObject (1)
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1526,7 +1529,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 46943316643315e4ca93ea4f8d89fcb7,
+      objectReference: {fileID: 21300000, guid: 6e5423277a077c443914f8377732bb69,
         type: 3}
     - target: {fileID: 212152618360767446, guid: 21a217e2f0ee04d40809051355f3eb6d,
         type: 2}
@@ -1545,6 +1548,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114028081785980682, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
+    - {fileID: 114639702125434898, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 21a217e2f0ee04d40809051355f3eb6d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1737073006
@@ -1558,7 +1562,7 @@ GameObject:
   - component: {fileID: 1737073008}
   - component: {fileID: 1737073007}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1678,7 +1682,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -293766424
+  randomSeed: 1146372223
   InitialModule:
     serializedVersion: 3
     enabled: 1
