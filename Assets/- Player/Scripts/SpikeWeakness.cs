@@ -28,7 +28,7 @@ public class SpikeWeakness : MonoBehaviour
 
 		pm.enabled = false;
 		rb.isKinematic = true;
-		rb.velocity = Vector3.zero;
+		rb.velocity = Vector2.zero;
 		GetComponent<EnergyCarrier>().Energy = 0;
 //		anim.SetBool("Die", true);
 		DeadCallBack();

@@ -135,10 +135,14 @@ public class TeamBase : MonoBehaviour
 		var collision = Physics2D.OverlapBox(pos, size, layer);
 		while (collision != null)
 		{
+			if(collision.gameObject.GetComponent<TeamMember>().team == this)
+				break;
+			print("waiting for" + collision.gameObject);
 			yield return new WaitForSeconds(ReSpawnUpdateTime);
+			collision = Physics2D.OverlapBox(pos, size, layer);
 		}
 
-
+		InvokePlayer(player);
 	}
 
 	void InvokePlayer(TeamMember player)
@@ -170,7 +174,8 @@ public class TeamBase : MonoBehaviour
 		foreach (var player in players)
 		{
 			player.GetComponent<PlayerMovement>().enabled = false;
-			player.GetComponent<Rigidbody2D>().isKinematic = false;
+			player.GetComponent<Rigidbody2D>().isKinematic = true;
+			player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		}
 	}
 }
