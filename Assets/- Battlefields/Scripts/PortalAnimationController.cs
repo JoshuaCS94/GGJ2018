@@ -9,6 +9,7 @@ public class PortalAnimationController : MonoBehaviour
 	public float y_pos = 1.5f;
 	public Transform child;
 
+	private Vector3 initPos;
 	private Tweener t;
 
 	// Use this for initialization
@@ -21,6 +22,7 @@ public class PortalAnimationController : MonoBehaviour
 	private void Start()
 	{
 		t = child.DOLocalMoveY(y_pos, rate_time).SetLoops(-1,LoopType.Yoyo).Pause();
+
 	}
 
 	// Update is called once per frame
@@ -30,12 +32,12 @@ public class PortalAnimationController : MonoBehaviour
 
 	public void StartAnimation()
 	{
-		print("start");
 		t.Play();
 	}
 
 	public void StopAnimation()
 	{
+		child.DOLocalMoveY(0, 0);
 		t.Pause();
 	}
 
