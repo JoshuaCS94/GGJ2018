@@ -25,7 +25,7 @@ public class MainNetworkManager : NetworkManager
         var loading = GameObject.Find("Loading").GetComponent<Text>();
 
         SceneManager.LoadScene("Level 0", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Battlefield 1", LoadSceneMode.Additive);
 
         loading.DOFade(0, 3);
     }
