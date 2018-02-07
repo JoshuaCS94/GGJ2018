@@ -11,8 +11,9 @@ public class TeamBase : MonoBehaviour
 	public float Energy = 0;
 
 	public GameObject[] TeamSpawnPoints;
-	public LayerMask layer;
+	public LayerMask BlockSpawningMask;
 
+	public float TimeToBorn = 3;
 	public float TimeToRespawn = 2;
 	public float ReSpawnUpdateTime = 0.2f;
 
@@ -20,9 +21,15 @@ public class TeamBase : MonoBehaviour
 	private BoxCollider2D bc2d;
 	public List<TeamMember> players = new List<TeamMember>();
 
-	public Transform initial_spawn_point;
+//	public Transform initial_spawn_point;
 
-	public GameObject[] TestPlayers;
+	private void Start()
+	{
+		foreach (var player in players)
+		{
+			AddPlayer(player.gameObject);
+		}
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -30,7 +37,7 @@ public class TeamBase : MonoBehaviour
 		{
 			foreach (var player in players)
 			{
-				Sequence s = DOTween.Sequence()
+				DOTween.Sequence()
 					.AppendCallback(() => player.portal.StartAnimation())
 					.AppendInterval(TimeToRespawn)
 					.AppendCallback(() => SpawnPlayer(player))
@@ -61,13 +68,16 @@ public class TeamBase : MonoBehaviour
 
 		TeamMembersCount++;
 
-		player.transform.position = initial_spawn_point.transform.position;
+//		player.transform.position = initial_spawn_point.transform.position;
+
+		DisablePlayer(p);
+
 		SpawnPlayer(p);
 	}
 
-	public void AddPlayers(GameObject[] players)
+	public void AddPlayers(GameObject[] plyers)
 	{
-		foreach (var player in players)
+		foreach (var player in plyers)
 		{
 			AddPlayer(player);
 		}
@@ -82,7 +92,7 @@ public class TeamBase : MonoBehaviour
 		var s_point = TeamSpawnPoints[player.identifier];
 
 		var pos = new Vector3(s_point.transform.position.x, s_point.transform.position.y + size.y);
-		var collision = Physics2D.OverlapBox(pos, size, layer);
+		var collision = Physics2D.OverlapBox(pos, size, BlockSpawningMask);
 
 		if (collision != null && collision.gameObject != player.gameObject )
 		{
@@ -91,6 +101,21 @@ public class TeamBase : MonoBehaviour
 		}
 
 		InvokePlayer(player);
+	}
+
+	//TOdo: en un futuro llamar a esta funcion cuando se vayan a spawnear todos los players, y quitar del AddPlayer el llamado a Spawn
+	public void SpawnAllPlayers()
+	{
+		DOTween.Sequence()
+			/*.AppendCallback(() => sonido de que va a empezar la cosa que dura TimeToBorn)*/
+			.AppendInterval(TimeToBorn)
+			.AppendCallback(() =>
+			{
+				foreach (var player in players)
+				{
+					SpawnPlayer(player);
+				}
+			});
 	}
 
 	public void SpawnAllPLayers()
@@ -115,7 +140,7 @@ public class TeamBase : MonoBehaviour
 	{
 		SetPlayerPos(player);
 
-		Sequence s = DOTween.Sequence()
+		DOTween.Sequence()
 			.AppendCallback(() => player.portal.StartAnimation())
 			.AppendInterval(TimeToRespawn)
 			.AppendCallback(() => SpawnPlayer(player))
@@ -130,13 +155,13 @@ public class TeamBase : MonoBehaviour
 		var s_point = TeamSpawnPoints[player.identifier];
 
 		var pos = new Vector3(s_point.transform.position.x, s_point.transform.position.y + size.y);
-		var collision = Physics2D.OverlapBox(pos, size, layer);
+		var collision = Physics2D.OverlapBox(pos, size, BlockSpawningMask);
 		while (collision != null)
 		{
 			if(collision.gameObject.GetComponent<TeamMember>().team == this)
 				break;
 			yield return new WaitForSeconds(ReSpawnUpdateTime);
-			collision = Physics2D.OverlapBox(pos, size, layer);
+			collision = Physics2D.OverlapBox(pos, size, BlockSpawningMask);
 		}
 
 		InvokePlayer(player);
@@ -165,13 +190,18 @@ public class TeamBase : MonoBehaviour
 		//TODO: UI
 	}
 
+	public void DisablePlayer(TeamMember player)
+	{
+		player.GetComponent<PlayerMovement>().enabled = false;
+		player.GetComponent<Rigidbody2D>().isKinematic = true;
+		player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+	}
+
 	public void DisablePlayers()
 	{
 		foreach (var player in players)
 		{
-			player.GetComponent<PlayerMovement>().enabled = false;
-			player.GetComponent<Rigidbody2D>().isKinematic = true;
-			player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			DisablePlayer(player);
 		}
 	}
 }
