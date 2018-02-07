@@ -16,7 +16,6 @@ public class PortalAnimationController : MonoBehaviour
 	void Awake ()
 	{
 		child = transform.GetChild(0);
-//		print(child);
 	}
 
 	private void Start()

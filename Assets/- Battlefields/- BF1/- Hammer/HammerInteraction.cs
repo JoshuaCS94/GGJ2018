@@ -36,12 +36,10 @@ public class HammerInteraction : MonoBehaviour
 		var rb = other.gameObject.GetComponent<Rigidbody2D>();
 		if (Left.IsTouchingLayers(Affected))
 		{
-			print("left");
 			var mypos = Left.bounds.center;
 			var playerPos = other.gameObject.transform.position;
 			var direction = Vector3.Normalize(mypos - playerPos);
 
-			print(direction);
 
 			rb.AddForce(direction*-300 + Vector3.left*1000);
 		}
@@ -52,7 +50,6 @@ public class HammerInteraction : MonoBehaviour
 			var playerPos = other.bounds.center;
 			var direction = Vector3.Normalize(mypos - playerPos);
 
-			print(direction);
 
 			rb.AddForce(direction*-300 + Vector3.right*1000);
 		}

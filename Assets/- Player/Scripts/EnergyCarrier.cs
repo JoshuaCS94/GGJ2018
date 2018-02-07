@@ -27,7 +27,6 @@ public class EnergyCarrier : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-//		print("enter");
 		if(other.gameObject.layer == LayerMask.NameToLayer("Energy"))
 			StartCoroutine("AddEnergy");
 		if (other.gameObject.layer == LayerMask.NameToLayer("Base"))
@@ -39,7 +38,6 @@ public class EnergyCarrier : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
-//		print(" exit");
 		if(other.gameObject.layer == LayerMask.NameToLayer("Energy"))
 			StopCoroutine("AddEnergy");
 	}

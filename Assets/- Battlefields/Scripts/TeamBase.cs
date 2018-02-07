@@ -86,7 +86,6 @@ public class TeamBase : MonoBehaviour
 
 		if (collision != null && collision.gameObject != player.gameObject )
 		{
-//			print(collision.gameObject);
 			StartCoroutine("WaitForSpawn", player);
 			return;
 		}
@@ -127,7 +126,6 @@ public class TeamBase : MonoBehaviour
 	{
 
 		var size = bc2d.bounds.extents;
-//		print("size =" + size.y);
 
 		var s_point = TeamSpawnPoints[player.identifier];
 
@@ -137,7 +135,6 @@ public class TeamBase : MonoBehaviour
 		{
 			if(collision.gameObject.GetComponent<TeamMember>().team == this)
 				break;
-			print("waiting for" + collision.gameObject);
 			yield return new WaitForSeconds(ReSpawnUpdateTime);
 			collision = Physics2D.OverlapBox(pos, size, layer);
 		}
@@ -155,7 +152,6 @@ public class TeamBase : MonoBehaviour
 
 		player.transform.DOMoveY(s_point.transform.position.y + 4 * size.y, 0.2f).OnComplete(() =>
 		{
-//			print("meh");
 			pm.enabled = true;
 			rb.isKinematic = false;
 		});
