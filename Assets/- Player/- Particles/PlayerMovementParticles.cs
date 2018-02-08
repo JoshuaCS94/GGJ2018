@@ -12,7 +12,7 @@ public class PlayerMovementParticles : MonoBehaviour
 	{
 		particles = GetComponent<ParticleSystem>();
 		var color = particles.main;
-		color.startColor = data.playerColor;
+		color.startColor = data.Color;
 	}
 
 	void Update ()
