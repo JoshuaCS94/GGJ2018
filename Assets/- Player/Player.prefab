@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4743281642975270}
   - component: {fileID: 114028081785980682}
   - component: {fileID: 114245136970077112}
+  - component: {fileID: 114241168582483996}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -168,7 +169,7 @@ GameObject:
   - component: {fileID: 4096451892075694}
   - component: {fileID: 212152618360767446}
   - component: {fileID: 114752706215909892}
-  - component: {fileID: 114639702125434898}
+  - component: {fileID: 114628551677895206}
   m_Layer: 8
   m_Name: Graphics
   m_TagString: Untagged
@@ -365,7 +366,7 @@ MonoBehaviour:
     i14: 235
     i15: 109
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114063781810105688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -443,6 +444,17 @@ MonoBehaviour:
   movement: {fileID: 114391324110902694}
   collisions: {fileID: 114504873993768440}
   StopTime: 0.1
+--- !u!114 &114241168582483996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1078155670971312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b9633fd4fe9b64fb26a2a1558175bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114245136970077112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -529,7 +541,7 @@ MonoBehaviour:
   Movement: {fileID: 114391324110902694}
   Energy: {fileID: 114951989242222190}
   MaxProbabilityToDie: 1
---- !u!114 &114639702125434898
+--- !u!114 &114628551677895206
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -537,7 +549,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1986656772417702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74beba8296502c1419894f5fec9edff0, type: 3}
+  m_Script: {fileID: 11500000, guid: 143a02968d9250f4e9f9769a5a920d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114667211322046444
@@ -595,7 +607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbaba7cbdcf18d4293cb0f145366214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animations: {fileID: 114639702125434898}
+  animations: {fileID: 0}
   movement: {fileID: 114391324110902694}
   force: 1000
 --- !u!114 &114886666299103686
