@@ -21,7 +21,7 @@ public class PlayerCollisionParticles : MonoBehaviour
 		particles = GetComponent<ParticleSystem>();
 		particles.Stop();
 		var color = particles.main;
-		color.startColor = data.playerColor;
+		color.startColor = data.Color;
 	}
 
 	void PlayParticles(Collision2D collision)

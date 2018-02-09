@@ -22,20 +22,21 @@ public class MainNetworkManager : NetworkManager
 
     public override void OnServerSceneChanged(string sceneName)
     {
-        var loading = GameObject.Find("Loading").GetComponent<Text>();
+        SceneManager.LoadScene("Server", LoadSceneMode.Additive);
 
-        SceneManager.LoadScene("Level 0", LoadSceneMode.Additive);
         SceneManager.LoadScene("Battlefield 1", LoadSceneMode.Additive);
-
-        loading.DOFade(0, 3);
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        var loading = GameObject.Find("Loading").GetComponent<Text>();
-
         SceneManager.LoadScene("Client", LoadSceneMode.Additive);
 
+        // TODO: This must not be loaded on a Host
+        SceneManager.LoadScene("Battlefield 1", LoadSceneMode.Additive);
+    }
+
+    public override void OnClientConnect(NetworkConnection conn)
+    {
         ClientScene.Ready(conn);
 
         if (!autoCreatePlayer)
@@ -48,11 +49,10 @@ public class MainNetworkManager : NetworkManager
             bodyCore = lobbyManager.CurrentCoreName,
             color = lobbyManager.Color
         });
-
-        loading.DOFade(0, 3);
     }
 
-    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
+    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId,
+        NetworkReader extraMessageReader)
     {
         if (!playerPrefab)
         {
@@ -79,41 +79,30 @@ public class MainNetworkManager : NetworkManager
             var startPosition = GetStartPosition();
             var playerMsg = extraMessageReader.ReadMessage<PlayerCreationMsg>();
 
-            var player = !(startPosition != null)
-                ? Instantiate(playerPrefab, playerPrefab.transform.position, Quaternion.identity)
-                : Instantiate(playerPrefab, startPosition.position, startPosition.rotation);
+            var player = startPosition
+                ? Instantiate(playerPrefab, startPosition.position, startPosition.rotation)
+                : Instantiate(playerPrefab, playerPrefab.transform.position, Quaternion.identity);
 
-            var body = Resources.Load("Robots/" + playerMsg.bodyBase) as GameObject;
-            player.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite =
-                body.GetComponent<SpriteRenderer>().sprite;
-
-            var core = Instantiate(Resources.Load("Cores/" + playerMsg.bodyCore) as GameObject);
-            core.transform.SetParent(player.transform.GetChild(1), false);
-            core.GetComponent<SpriteRenderer>().material.color = playerMsg.color;
+            player.name = playerMsg.name;
 
             var playerData = player.GetComponent<PlayerData>();
-            playerData.name = playerMsg.name;
-            playerData.playerColor = playerMsg.color;
+
+            playerData.Name = playerMsg.name;
+            playerData.Color = playerMsg.color;
+            playerData.BodyPath = playerMsg.bodyBase;
+            playerData.CorePath = playerMsg.bodyCore;
 
             NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 
-            // Add players
-            var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-            print(gameManager);
-
-            var team1 = gameManager.team1;
-            var team2 = gameManager.team2;
-
-            if (m_currentTeam % 2 == 0)
-            {
-                team1.AddPlayer(player);
-            }
-            else
-            {
-                team2.AddPlayer(player);
-            }
-
-            m_currentTeam++;
+//            // Add players
+//            var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+//
+//            var team1 = gameManager.team1;
+//            var team2 = gameManager.team2;
+//
+//            (m_currentTeam % 2 == 0 ? team1 : team2).AddPlayer(player);
+//
+//            m_currentTeam++;
         }
     }
 

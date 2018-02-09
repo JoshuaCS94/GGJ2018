@@ -47,7 +47,7 @@ public class TeamBase : MonoBehaviour
 		}
 //		player.transform.position =
 		bc2d = player.GetComponentInChildren<BoxCollider2D>();
-		var c = player.GetComponent<PlayerData>().playerColor;
+		var c = player.GetComponent<PlayerData>().Color;
 		var portal = TeamSpawnPoints[TeamMembersCount].GetComponent<PortalAnimationController>();
 		portal.ChangeColor(c);
 		var mov = player.transform.Find("Movement").gameObject;

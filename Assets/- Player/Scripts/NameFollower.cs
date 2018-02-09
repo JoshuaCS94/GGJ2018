@@ -15,10 +15,10 @@ public class NameFollower : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		string name = transform.parent.GetComponentInParent<PlayerData>().playerName;
+		string name = transform.parent.GetComponentInParent<PlayerData>().Name;
 		text = GetComponentInChildren<Text>();
 		text.text = name;
-		text.color = transform.parent.GetComponentInParent<PlayerData>().playerColor;
+		text.color = transform.parent.GetComponentInParent<PlayerData>().Color;
 		follow = transform.parent.gameObject.transform;
 	}
 
