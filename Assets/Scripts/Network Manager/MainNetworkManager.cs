@@ -22,15 +22,17 @@ public class MainNetworkManager : NetworkManager
 
     public override void OnServerSceneChanged(string sceneName)
     {
+        SceneManager.LoadScene("Server", LoadSceneMode.Additive);
+
         SceneManager.LoadScene("Battlefield 1", LoadSceneMode.Additive);
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
+        SceneManager.LoadScene("Client", LoadSceneMode.Additive);
+
         // TODO: This must not be loaded on a Host
         SceneManager.LoadScene("Battlefield 1", LoadSceneMode.Additive);
-
-        SceneManager.LoadScene("Client", LoadSceneMode.Additive);
     }
 
     public override void OnClientConnect(NetworkConnection conn)

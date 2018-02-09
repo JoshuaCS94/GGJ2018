@@ -15,11 +15,14 @@ EditorBuildSettings:
     path: Assets/- Lobby/Lobby.unity
     guid: 534cfff345aa234459bc3f26f01df90e
   - enabled: 1
+    path: Assets/- Lobby/Lobby_Online.unity
+    guid: 29f2beefc47f08f4da54ca90c507c38e
+  - enabled: 1
     path: Assets/- Client/Scenes/Client.unity
     guid: 4237c870f0ee33c4b932f6e9b3037fdb
   - enabled: 1
-    path: Assets/- Battlefields/- BF0/Battlefield Base.unity
-    guid: 933d5b3aa09025e4dbf3d76656ab9433
+    path: Assets/- Server/Server.unity
+    guid: 753b8672f9f2c8c40bc3c06ae6dc462b
   - enabled: 1
     path: Assets/- Battlefields/- BF1/Battlefield 1.unity
     guid: ad793042609e14f428ab960b34e20519
