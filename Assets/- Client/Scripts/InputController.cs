@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using DG.Tweening;
+using UnityEngine;
 using UnityEngine.Networking;
 
 
@@ -7,15 +9,31 @@ public class InputController : NetworkBehaviour
 	private IControlHandler m_controlHandler;
 	private PlayerMovement m_playerMovement;
 	private PlayerBurst m_playerBurst;
-
 	private int m_prevMovement;
 	private bool m_prevJump;
+	private Tweener m_posTwn;
+
+	private const float MOV_SQUARED_THRESHOLD = 1;
 
 
 	private void Awake()
 	{
 		m_playerMovement = GetComponentInChildren<PlayerMovement>();
-		m_playerBurst = GetComponentInChildren<PlayerBurst>();
+		m_playerBurst = m_playerMovement.GetComponent<PlayerBurst>();
+	}
+
+	private void Start()
+	{
+		m_posTwn = m_playerMovement.rb.DOMove(m_playerMovement.rb.position, .1f)
+			.SetEase(Ease.Linear)
+			.SetAutoKill(false)
+			.OnRewind(() => m_playerMovement.rb.isKinematic = true)
+			.OnComplete(() => m_playerMovement.rb.isKinematic = false);
+	}
+
+	public override void OnStartServer()
+	{
+		StartCoroutine(UpdatePosition());
 	}
 
 	public override void OnStartLocalPlayer()
@@ -33,6 +51,17 @@ public class InputController : NetworkBehaviour
 		if (!isLocalPlayer) return;
 
 		HandleInput();
+	}
+
+	[Server]
+	private IEnumerator UpdatePosition()
+	{
+		while (this)
+		{
+			Rpc_SetPos(m_playerMovement.rb.position);
+
+			yield return new WaitForSeconds(.2f);
+		}
 	}
 
 	private void HandleInput()
@@ -101,5 +130,15 @@ public class InputController : NetworkBehaviour
 		if (isServer) return;
 
 		m_playerBurst.Burst(keyCode);
+	}
+
+	[ClientRpc]
+	private void Rpc_SetPos(Vector2 pos)
+	{
+		var p = m_playerMovement.rb.position;
+
+		if ((p - pos).sqrMagnitude > MOV_SQUARED_THRESHOLD)
+			m_posTwn.ChangeValues(m_playerMovement.rb.position, pos)
+				.Restart();
 	}
 }
