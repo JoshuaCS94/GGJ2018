@@ -1,42 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SpikeWeakness : MonoBehaviour
+namespace Scripts
 {
-	private Animator anim;
-
-	public TeamBase Team;
-	// Use this for initialization
-	void Start ()
+	public class SpikeWeakness : MonoBehaviour
 	{
-		anim = GetComponent<Animator>();
-	}
+		private Animator anim;
 
-	// Update is called once per frame
-	void Update () {
+		public TeamBase Team;
+		// Use this for initialization
+		void Start ()
+		{
+			anim = GetComponent<Animator>();
+		}
 
-	}
+		// Update is called once per frame
+		void Update () {
+
+		}
 
 
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		if (other.gameObject.layer != LayerMask.NameToLayer("TouchDanger"))
-			return;
-		var pm = GetComponent<PlayerMovement>();
-		var rb = GetComponent<Rigidbody2D>();
+		private void OnTriggerEnter2D(Collider2D other)
+		{
+			if (other.gameObject.layer != LayerMask.NameToLayer("TouchDanger"))
+				return;
+			var pm = GetComponent<PlayerMovement>();
+			var pb = GetComponent<PlayerBurst>();
+			var rb = GetComponent<Rigidbody2D>();
 
-		pm.enabled = false;
-		rb.isKinematic = true;
-		rb.velocity = Vector2.zero;
-		GetComponent<EnergyCarrier>().Energy = 0;
+			pm.enabled = false;
+			pb.enabled = false;
+			rb.isKinematic = true;
+			rb.velocity = Vector2.zero;
+			GetComponent<EnergyCarrier>().Energy = 0;
 //		anim.SetBool("Die", true);
-		DeadCallBack();
-	}
+			DeadCallBack();
+		}
 
-	public void DeadCallBack()
-	{
-		Team.KillPlayer(gameObject.GetComponent<TeamMember>());
-	}
+		public void DeadCallBack()
+		{
+			Team.KillPlayer(gameObject.GetComponent<TeamMember>());
+		}
 
+	}
 }

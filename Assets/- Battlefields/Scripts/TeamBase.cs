@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Scripts;
 using UnityEngine;
 
 public class TeamBase : MonoBehaviour
@@ -169,16 +170,12 @@ public class TeamBase : MonoBehaviour
 
 	void InvokePlayer(TeamMember player)
 	{
-		var pm = player.GetComponent<PlayerMovement>();
-		var rb = player.GetComponent<Rigidbody2D>();
-
 		var size = bc2d.bounds.extents;
 		var s_point = TeamSpawnPoints[player.identifier];
 
 		player.transform.DOMoveY(s_point.transform.position.y + 4 * size.y, 0.2f).OnComplete(() =>
 		{
-			pm.enabled = true;
-			rb.isKinematic = false;
+			EnablePlayer(player);
 		});
 	}
 
@@ -193,8 +190,18 @@ public class TeamBase : MonoBehaviour
 	public void DisablePlayer(TeamMember player)
 	{
 		player.GetComponent<PlayerMovement>().enabled = false;
+		player.GetComponent<PlayerBurst>().enabled = false;
 		player.GetComponent<Rigidbody2D>().isKinematic = true;
 		player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+//		player.gameObject.SetActive(false);
+	}
+
+	public void EnablePlayer(TeamMember player)
+	{
+		player.GetComponent<PlayerMovement>().enabled = true;
+		player.GetComponent<PlayerBurst>().enabled = true;
+		player.GetComponent<Rigidbody2D>().isKinematic = false;
+//		player.gameObject.SetActive(true);
 	}
 
 	public void DisablePlayers()
@@ -204,9 +211,14 @@ public class TeamBase : MonoBehaviour
 			DisablePlayer(player);
 		}
 	}
+
+	public void EnablePlayers()
+	{
+		players.ForEach(EnablePlayer);
+	}
 }
 
-static class externals
+static class Externals
 {
 	public static void SetX(this Transform t, float value)
 	{

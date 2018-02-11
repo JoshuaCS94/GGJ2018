@@ -1364,7 +1364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1546556249
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28711326774ccd74aa52f002a98e0197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameDuration: 300
+  GameDuration: 500
   Time_Passed: 0
   team1: {fileID: 1534767223}
   team2: {fileID: 443851702}
