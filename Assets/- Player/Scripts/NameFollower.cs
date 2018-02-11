@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Scripts
@@ -6,6 +7,7 @@ namespace Scripts
 	public class NameFollower : MonoBehaviour {
 
 		public Transform follow;
+
 
 		private Text text;
 //	public Camera camera;
@@ -20,14 +22,27 @@ namespace Scripts
 			text.text = name;
 			text.color = transform.parent.GetComponentInParent<PlayerData>().playerColor;
 			follow = transform.parent.gameObject.transform;
+			TeamBase.ToggleActiveAction += OnToggleActive;
 		}
 
+		private void OnDestroy()
+		{
+			TeamBase.ToggleActiveAction -= OnToggleActive;
+		}
 
 		// Update is called once per frame
 		void Update () {
 			transform.LookAt(follow);
 			transform.rotation = Quaternion.identity;
 
+		}
+
+		void OnToggleActive(GameObject o)
+		{
+			if (o == transform.parent.gameObject)
+			{
+				text.enabled = !text.enabled;
+			}
 		}
 	}
 }
