@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HammerAnim Controller
+  m_Name: UpHammerAnim Controller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Active
@@ -268,7 +268,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 36, y: 324, z: 0}
+  m_EntryPosition: {x: 60, y: 72, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 1102431351405204836}
+  m_DefaultState: {fileID: 1102934552952452694}

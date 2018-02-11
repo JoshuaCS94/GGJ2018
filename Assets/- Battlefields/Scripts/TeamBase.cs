@@ -60,7 +60,7 @@ public class TeamBase : MonoBehaviour
 		portal.ChangeColor(c);
 		var mov = player.transform.Find("Movement").gameObject;
 		var p = mov.AddComponent<TeamMember>();
-		mov.AddComponent<SpikeWeakness>().Team = this;
+		mov.AddComponent<TouchWeakness>().Team = this;
 
 		p.identifier = TeamMembersCount;
 		p.portal = portal;

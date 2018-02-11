@@ -2,7 +2,7 @@
 
 namespace Scripts
 {
-	public class SpikeWeakness : MonoBehaviour
+	public class TouchWeakness : MonoBehaviour
 	{
 		private Animator anim;
 
