@@ -27,7 +27,6 @@ public class HammerController : MonoBehaviour
 		var state = anim.GetCurrentAnimatorStateInfo(0);
 		if (state.shortNameHash == ready_state1 || state.shortNameHash == ready_state2)
 		{
-			print("meh");
 			anim.SetTrigger("Active");
 		}
 	}

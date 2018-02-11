@@ -1,13 +1,15 @@
-﻿﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NameFollower : MonoBehaviour {
+namespace Scripts
+{
+	public class NameFollower : MonoBehaviour {
 
-	public Transform follow;
+		public Transform follow;
 
-	private Text text;
+
+		private Text text;
 //	public Camera camera;
 //	private Transform thisTransform;
 //	private Vector3 roboPos;
@@ -20,13 +22,27 @@ public class NameFollower : MonoBehaviour {
 		text.text = name;
 		text.color = transform.parent.GetComponentInParent<PlayerData>().Color;
 		follow = transform.parent.gameObject.transform;
+		TeamBase.ToggleActiveAction += OnToggleActive;
 	}
 
+		private void OnDestroy()
+		{
+			TeamBase.ToggleActiveAction -= OnToggleActive;
+		}
 
-	// Update is called once per frame
-	void Update () {
-		transform.LookAt(follow);
-		transform.rotation = Quaternion.identity;
+		// Update is called once per frame
+		void Update () {
+			transform.LookAt(follow);
+			transform.rotation = Quaternion.identity;
 
+		}
+
+		void OnToggleActive(GameObject o)
+		{
+			if (o == transform.parent.gameObject)
+			{
+				text.enabled = !text.enabled;
+			}
+		}
 	}
 }

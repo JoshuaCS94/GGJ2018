@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TeamMember : MonoBehaviour
+namespace Scripts
 {
+	public class TeamMember : MonoBehaviour
+	{
 
-	public int identifier;
-	public PortalAnimationController portal;
-	public TeamBase team;
+		public int identifier;
+		public PortalAnimationController portal;
+		public TeamBase team;
 
+	}
 }
