@@ -9,7 +9,7 @@ public class InputController : NetworkBehaviour
 	private IControlHandler m_controlHandler;
 	private PlayerMovement m_playerMovement;
 	private PlayerBurst m_playerBurst;
-	private int m_prevMovement;
+	private float m_prevMovement;
 	private bool m_prevJump;
 	private Tweener m_posTwn;
 
@@ -85,7 +85,7 @@ public class InputController : NetworkBehaviour
 	}
 
 	[Command]
-	private void Cmd_Move(int m)
+	private void Cmd_Move(float m)
 	{
 		m_playerMovement.movement = m;
 
@@ -93,7 +93,7 @@ public class InputController : NetworkBehaviour
 	}
 
 	[ClientRpc]
-	private void Rpc_Move(int m)
+	private void Rpc_Move(float m)
 	{
 		if (isServer) return;
 

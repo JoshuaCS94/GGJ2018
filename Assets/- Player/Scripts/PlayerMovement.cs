@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 	public SpriteRenderer Renderer;
 	public PlayerData data;
 
-	[HideInInspector] public int movement;
+	[HideInInspector] public float movement;
 	[HideInInspector] public bool jump;
 
 	private Collider2D collider;

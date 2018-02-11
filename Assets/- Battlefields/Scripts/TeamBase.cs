@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -55,7 +56,7 @@ namespace Scripts
 		{
 			if (TeamMembersCount == 4)
 			{
-				return;
+				throw new Exception("No more players can join on this team");
 			}
 //		player.transform.position =
 			bc2d = player.GetComponentInChildren<BoxCollider2D>();

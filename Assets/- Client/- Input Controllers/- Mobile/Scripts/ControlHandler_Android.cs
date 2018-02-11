@@ -2,7 +2,7 @@
 
 public class ControlHandler_Android : MonoBehaviour, IControlHandler
 {
-    public int Movement { get; set; }
+    public float Movement { get; set; }
     public bool Jump { get; set; }
     public KeyCode Burst { get; set; }
 

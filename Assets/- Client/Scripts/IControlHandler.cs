@@ -2,7 +2,7 @@
 
 public interface IControlHandler
 {
-    int Movement { get; }
+    float Movement { get; }
     bool Jump { get; }
     KeyCode Burst { get; set; }
 }
