@@ -23,7 +23,7 @@ namespace Scripts
 		private BoxCollider2D bc2d;
 		public List<TeamMember> players = new List<TeamMember>();
 
-		internal static event Action<GameObject> ToggleActiveAction;
+		internal static event System.Action<GameObject> ToggleActiveAction;
 
 
 //	public Transform initial_spawn_point;
