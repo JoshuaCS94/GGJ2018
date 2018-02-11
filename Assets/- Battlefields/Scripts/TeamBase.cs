@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -60,7 +59,7 @@ namespace Scripts
 			}
 //		player.transform.position =
 			bc2d = player.GetComponentInChildren<BoxCollider2D>();
-			var c = player.GetComponent<PlayerData>().playerColor;
+			var c = player.GetComponent<PlayerData>().Color;
 			var portal = TeamSpawnPoints[TeamMembersCount].GetComponent<PortalAnimationController>();
 			portal.ChangeColor(c);
 			var mov = player.transform.Find("Movement").gameObject;

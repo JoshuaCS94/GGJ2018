@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void Start()
 	{
-		Renderer.color = data.playerColor;
+		Renderer.color = data.Color;
 	}
 
 	private void FixedUpdate()

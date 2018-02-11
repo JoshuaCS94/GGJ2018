@@ -14,16 +14,16 @@ namespace Scripts
 //	private Transform thisTransform;
 //	private Vector3 roboPos;
 
-		// Use this for initialization
-		void Start ()
-		{
-			string name = transform.parent.GetComponentInParent<PlayerData>().playerName;
-			text = GetComponentInChildren<Text>();
-			text.text = name;
-			text.color = transform.parent.GetComponentInParent<PlayerData>().playerColor;
-			follow = transform.parent.gameObject.transform;
-			TeamBase.ToggleActiveAction += OnToggleActive;
-		}
+	// Use this for initialization
+	void Start ()
+	{
+		string name = transform.parent.GetComponentInParent<PlayerData>().Name;
+		text = GetComponentInChildren<Text>();
+		text.text = name;
+		text.color = transform.parent.GetComponentInParent<PlayerData>().Color;
+		follow = transform.parent.gameObject.transform;
+		TeamBase.ToggleActiveAction += OnToggleActive;
+	}
 
 		private void OnDestroy()
 		{
