@@ -58,7 +58,7 @@ public class InputController : NetworkBehaviour
 	{
 		while (this)
 		{
-			Rpc_SetPos(m_playerMovement.rb.position);
+//			Rpc_SetPos(m_playerMovement.rb.position);
 
 			yield return new WaitForSeconds(.2f);
 		}
