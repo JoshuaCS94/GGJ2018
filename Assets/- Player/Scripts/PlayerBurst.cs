@@ -42,7 +42,7 @@ public class PlayerBurst : MonoBehaviour
 			}
 		}
 
-		BurstEvents(direction);
+		BurstEvents?.Invoke(direction);
 	}
 
 	internal void BlockBurst()

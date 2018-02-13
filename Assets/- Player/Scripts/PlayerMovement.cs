@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Scripts;
 using UnityEngine;
@@ -49,8 +47,11 @@ public class PlayerMovement : MonoBehaviour
 	internal Rigidbody2D rb;
 	private float energySlow;
 
+	private PlayerNetworkTransform nt;
+
 	private void Awake()
 	{
+		nt = GetComponentInParent<PlayerNetworkTransform>();
 		rb = GetComponent<Rigidbody2D>();
 		initialGravityScale = rb.gravityScale;
 
@@ -81,11 +82,13 @@ public class PlayerMovement : MonoBehaviour
 
 	void Start()
 	{
-		Renderer.color = data.Color;
+		if(data) Renderer.color = data.Color;
 	}
 
 	private void FixedUpdate()
 	{
+		if (nt && !nt.isServer) return;
+
 		grounded = false;
 
 		energySlow = (Energy.Energy / Energy.MaxEnergy) * MaxEnergySlow;
@@ -107,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
 		HandleJump();
 		HandleMovement();
+
 	}
 
 	void HandleMovement()
