@@ -82,12 +82,12 @@ public class PlayerMovement : MonoBehaviour
 
 	void Start()
 	{
-		Renderer.color = data.Color;
+		if(data) Renderer.color = data.Color;
 	}
 
 	private void FixedUpdate()
 	{
-		if (!nt.isServer) return;
+		if (nt && !nt.isServer) return;
 
 		grounded = false;
 
